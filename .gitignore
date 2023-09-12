@@ -12,3 +12,5 @@ autom4te.cache
 build-aux/
 libnftables.pc
 libtool
+.deps
+*.o
