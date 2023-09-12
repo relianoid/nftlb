@@ -1,8 +1,8 @@
 /*
  *   This file is part of nftlb, nftables load balancer.
  *
- *   Copyright (C) ZEVENET SL.
- *   Author: Laura Garcia <laura.garcia@zevenet.com>
+ *   Copyright (C) RELIANOID
+ *   Author: Laura Garcia Liebana <laura@relianoid.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU Affero General Public License as
