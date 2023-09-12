@@ -1,9 +1,9 @@
 ###############################################################################
 #
-#    Zevenet zproxy Load Balancer Software License
-#    This file is part of the Zevenet zproxy Load Balancer software package.
+#    RELIANOID reverse proxy Load Balancer Software License
+#    This file is part of the RELIANOID reverse proxy Load Balancer solution
 #
-#    Copyright (C) 2019-today ZEVENET SL, Sevilla (Spain)
+#    Copyright (C) RELIANOID
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -22,20 +22,20 @@
 cmake_minimum_required(VERSION 3.6)
 set(CMAKE_CXX_STANDARD 17)
 
-if(EXISTS CMakeLists.txt)
+if (EXISTS CMakeLists.txt)
     message(FATAL_ERROR"Please create a cmake build directory, running cmake form source tree root is not allowed\n")
-endif()
+endif ()
 
 if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE RelWithDebInfo)
 endif ()
 
-set (CMAKE_ENABLE_EXPORTS TRUE)
+set(CMAKE_ENABLE_EXPORTS TRUE)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(MAINFOLDER ${PROJECT_SOURCE_DIR})
 
 set(PROJECT_VERSION "0.0.1")
-set(PROJECT_DESCRIPTION "Zevenet core utils library")
+set(PROJECT_DESCRIPTION "RELIANOID core utils library")
 set(PROJECT_CODENAME "zcutils")
 
 # get current git info
@@ -52,9 +52,6 @@ if (EXISTS "${PROJECT_SOURCE_DIR}/.git/HEAD")
         PROJECT_SOURCE_VERSION)
 endif ()
 
-add_definitions(-DPROJECT_NAME="zcutils")
-add_definitions(-DPROJECT_VERSION="${PROJECT_VERSION}")
-
 if (UNIQUE_BUILD_DIRECTORY)
 	set(EXECUTABLE_OUTPUT_PATH "${MAINFOLDER}/build/bin")
 endif ()
@@ -64,6 +61,7 @@ set(sources
 	src/zcu_log.c
 	src/zcu_network.c
 	src/zcu_backtrace.c
+	src/zcu_http.c
 	src/zcu_sbuffer.c
 	src/zcu_string.c
 
@@ -83,6 +81,10 @@ include_directories(${PROJECT_SOURCE_DIR}/zcutils/include)
 
 add_library(zcutils ${sources})
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m64 -pipe -g -Wno-unused-function -Wall")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m64 -pipe -Wno-unused-function -Wall")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -g -O0")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -O3")
+set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS} -g -O3")
+set(CMAKE_CXX_FLAGS_MINSIZEREL "${CMAKE_CXX_FLAGS} -Os")
 
 include_directories(${PROJECT_SOURCE_DIR}/include)

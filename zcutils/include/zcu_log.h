@@ -1,22 +1,18 @@
 /*
- *   This file is part of zcutils, ZEVENET Core Utils.
+ * Copyright (C) RELIANOID
  *
- *   Copyright (C) ZEVENET SL.
- *   Author: Laura Garcia <laura.garcia@zevenet.com>
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
  *
- *   This program is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU Affero General Public License as
- *   published by the Free Software Foundation, either version 3 of the
- *   License, or any later version.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
  *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU Affero General Public License for more details.
- *
- *   You should have received a copy of the GNU Affero General Public License
- *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef _ZCU_LOG_H_
@@ -65,7 +61,7 @@ int zcu_log_print(int loglevel, const char *fmt, ...);
 #endif
 
 #define zcu_log_print_th(loglevel, fmt, ...)                                      \
-	zcu_log_print(loglevel, "[f:%s][th:%lx] " fmt, zcu_log_prefix,        \
+	zcu_log_print(loglevel, "%s[th:%lx] " fmt, zcu_log_prefix,        \
 	       (unsigned int) (pthread_self()),              \
 	       ##__VA_ARGS__)
 

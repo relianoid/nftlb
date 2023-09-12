@@ -1,22 +1,18 @@
 /*
- *   This file is part of zcutils, ZEVENET Core Utils.
+ * Copyright (C) RELIANOID
  *
- *   Copyright (C) ZEVENET SL.
- *   Author: Laura Garcia <laura.garcia@zevenet.com>
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
  *
- *   This program is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU Affero General Public License as
- *   published by the Free Software Foundation, either version 3 of the
- *   License, or any later version.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
  *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU Affero General Public License for more details.
- *
- *   You should have received a copy of the GNU Affero General Public License
- *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "zcu_network.h"
@@ -26,7 +22,8 @@
 
 #define ZCU_MAX_IDENT	100
 
-int zcu_soc_equal_sockaddr(struct sockaddr *addr1, struct sockaddr *addr2, int compare_port)
+int zcu_soc_equal_sockaddr(const struct sockaddr *addr1,
+			   const struct sockaddr *addr2, int compare_port)
 {
 	if (addr1->sa_family != addr2->sa_family)
 		return 0;
