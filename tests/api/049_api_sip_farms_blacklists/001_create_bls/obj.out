@@ -1,0 +1,224 @@
+{
+        "policies": [
+                {
+                        "name": "geo_CN_china",
+                        "family": "ipv4",
+                        "type": "blacklist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[BL,geo_CN_china,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "geo_RU_russia",
+                        "family": "ipv4",
+                        "type": "blacklist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[BL,geo_RU_russia,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "geo_TR_turkey",
+                        "family": "ipv4",
+                        "type": "blacklist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[BL,geo_TR_turkey,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "proxy",
+                        "family": "ipv4",
+                        "type": "blacklist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[BL,proxy,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "CIArmy",
+                        "family": "ipv4",
+                        "type": "blacklist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[BL,CIArmy,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "TOR_nodes",
+                        "family": "ipv4",
+                        "type": "blacklist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[BL,TOR_nodes,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "apache_list",
+                        "family": "ipv4",
+                        "type": "blacklist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[BL,apache_list,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "ftp_list",
+                        "family": "ipv4",
+                        "type": "blacklist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[BL,ftp_list,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "bad_peers",
+                        "family": "ipv4",
+                        "type": "blacklist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[BL,bad_peers,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "webexploit",
+                        "family": "ipv4",
+                        "type": "blacklist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[BL,webexploit,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "tor_list",
+                        "family": "ipv4",
+                        "type": "blacklist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[BL,tor_list,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "ssh_brute_force",
+                        "family": "ipv4",
+                        "type": "blacklist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[BL,ssh_brute_force,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "wordpress_list",
+                        "family": "ipv4",
+                        "type": "blacklist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[BL,wordpress_list,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "ssh_list",
+                        "family": "ipv4",
+                        "type": "blacklist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[BL,ssh_list,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "spyware",
+                        "family": "ipv4",
+                        "type": "blacklist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[BL,spyware,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "http_list",
+                        "family": "ipv4",
+                        "type": "blacklist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[BL,http_list,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "mail_list",
+                        "family": "ipv4",
+                        "type": "blacklist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[BL,mail_list,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "mail_spammer",
+                        "family": "ipv4",
+                        "type": "blacklist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[BL,mail_spammer,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "proxy_list",
+                        "family": "ipv4",
+                        "type": "blacklist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[BL,proxy_list,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "Private_networks",
+                        "family": "ipv4",
+                        "type": "whitelist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[WL,Private_networks,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "internal",
+                        "family": "ipv4",
+                        "type": "whitelist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[WL,internal,FNAME]",
+                        "used": "0",
+                        "elements": []
+                },
+                {
+                        "name": "UHE",
+                        "family": "ipv4",
+                        "type": "whitelist",
+                        "route": "in",
+                        "timeout": "0",
+                        "log-prefix": "[WL,UHE,FNAME]",
+                        "used": "0",
+                        "elements": []
+                }
+        ]
+}

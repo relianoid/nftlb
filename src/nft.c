@@ -1838,11 +1838,11 @@ static void run_farm_helper(struct u_buffer *buf, struct farm *f, int family, in
 {
 	switch (action) {
 	case ACTION_START:
-		concat_exec_cmd(buf, " ; add ct helper %s %s %s-%s { type \"%s\" protocol %s ; } ;", print_nft_table_family(family, NFTLB_F_CHAIN_PRE_FILTER), NFTLB_TABLE_NAME, obj_print_helper(f->helper), protocol, obj_print_helper(f->helper), protocol);
+		concat_exec_cmd(buf, " ; add ct helper %s %s %s-%s-%s { type \"%s\" protocol %s ; } ;", print_nft_table_family(family, NFTLB_F_CHAIN_PRE_FILTER), NFTLB_TABLE_NAME, f->name, obj_print_helper(f->helper), protocol, obj_print_helper(f->helper), protocol);
 		break;
 	case ACTION_DELETE:
 	case ACTION_STOP:
-		concat_exec_cmd(buf, " ; delete ct helper %s %s %s-%s ; ", print_nft_table_family(family, NFTLB_F_CHAIN_PRE_FILTER), NFTLB_TABLE_NAME, obj_print_helper(f->helper), protocol);
+		concat_exec_cmd(buf, " ; delete ct helper %s %s %s-%s-%s ; ", print_nft_table_family(family, NFTLB_F_CHAIN_PRE_FILTER), NFTLB_TABLE_NAME, f->name, obj_print_helper(f->helper), protocol);
 		break;
 	case ACTION_RELOAD:
 	default:
@@ -1894,14 +1894,14 @@ static int run_farm_rules_filter_helper(struct u_buffer *buf, struct nftst *n, i
 		sprintf(protocol, "tcp");
 		run_farm_helper(buf, f, family, action, protocol);
 		if (action == ACTION_START || action == ACTION_RELOAD)
-			concat_exec_cmd(buf, " ; add rule %s %s %s %s %s %s ct helper set %s-%s", print_nft_table_family(family, NFTLB_F_CHAIN_PRE_FILTER), NFTLB_TABLE_NAME, chain, print_nft_table_family(family, NFTLB_F_CHAIN_PRE_FILTER), print_nft_family_protocol(family), protocol, obj_print_helper(f->helper), protocol);
+			concat_exec_cmd(buf, " ; add rule %s %s %s %s %s %s ct helper set %s-%s-%s", print_nft_table_family(family, NFTLB_F_CHAIN_PRE_FILTER), NFTLB_TABLE_NAME, chain, print_nft_table_family(family, NFTLB_F_CHAIN_PRE_FILTER), print_nft_family_protocol(family), protocol, f->name, obj_print_helper(f->helper), protocol);
 	}
 
 	if (a->protocol == VALUE_PROTO_UDP || a->protocol == VALUE_PROTO_ALL) {
 		sprintf(protocol, "udp");
 		run_farm_helper(buf, f, family, action, protocol);
 		if (action == ACTION_START || action == ACTION_RELOAD)
-			concat_exec_cmd(buf, " ; add rule %s %s %s %s %s %s ct helper set %s-%s", print_nft_table_family(family, NFTLB_F_CHAIN_PRE_FILTER), NFTLB_TABLE_NAME, chain, print_nft_table_family(family, NFTLB_F_CHAIN_PRE_FILTER), print_nft_family_protocol(family), protocol, obj_print_helper(f->helper), protocol);
+			concat_exec_cmd(buf, " ; add rule %s %s %s %s %s %s ct helper set %s-%s-%s", print_nft_table_family(family, NFTLB_F_CHAIN_PRE_FILTER), NFTLB_TABLE_NAME, chain, print_nft_table_family(family, NFTLB_F_CHAIN_PRE_FILTER), print_nft_family_protocol(family), protocol, f->name, obj_print_helper(f->helper), protocol);
 	}
 
 	return 0;

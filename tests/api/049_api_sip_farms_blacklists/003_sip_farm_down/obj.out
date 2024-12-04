@@ -1,0 +1,874 @@
+{
+        "farms": [
+                {
+                        "name": "HTTP-UHE",
+                        "family": "ipv4",
+                        "virtual-addr": "127.0.0.1",
+                        "virtual-ports": "80",
+                        "source-addr": "",
+                        "mode": "local",
+                        "protocol": "tcp",
+                        "scheduler": "rr",
+                        "sched-param": "none",
+                        "persistence": "none",
+                        "persist-ttl": "60",
+                        "helper": "none",
+                        "log": "none",
+                        "log-rtlimit": "0/second",
+                        "mark": "0x0",
+                        "priority": "1",
+                        "state": "up",
+                        "limits-ttl": "120",
+                        "new-rtlimit": "0/second",
+                        "new-rtlimit-burst": "0",
+                        "rst-rtlimit": "0/second",
+                        "rst-rtlimit-burst": "0",
+                        "est-connlimit": "0",
+                        "tcp-strict": "off",
+                        "queue": "-1",
+                        "verdict": "log drop accept",
+                        "addresses": [
+                                {
+                                        "name": "HTTP-UHE-addr",
+                                        "family": "ipv4",
+                                        "ip-addr": "127.0.0.1",
+                                        "ports": "80",
+                                        "protocol": "tcp",
+                                        "used": "1"
+                                }
+                        ],
+                        "backends": [],
+                        "policies": [
+                                {
+                                        "name": "geo_CN_china"
+                                },
+                                {
+                                        "name": "geo_RU_russia"
+                                },
+                                {
+                                        "name": "geo_TR_turkey"
+                                },
+                                {
+                                        "name": "proxy"
+                                },
+                                {
+                                        "name": "CIArmy"
+                                },
+                                {
+                                        "name": "TOR_nodes"
+                                },
+                                {
+                                        "name": "apache_list"
+                                },
+                                {
+                                        "name": "ftp_list"
+                                },
+                                {
+                                        "name": "bad_peers"
+                                },
+                                {
+                                        "name": "webexploit"
+                                },
+                                {
+                                        "name": "tor_list"
+                                },
+                                {
+                                        "name": "ssh_brute_force"
+                                },
+                                {
+                                        "name": "wordpress_list"
+                                },
+                                {
+                                        "name": "ssh_list"
+                                },
+                                {
+                                        "name": "spyware"
+                                },
+                                {
+                                        "name": "http_list"
+                                },
+                                {
+                                        "name": "mail_list"
+                                },
+                                {
+                                        "name": "mail_spammer"
+                                },
+                                {
+                                        "name": "proxy_list"
+                                },
+                                {
+                                        "name": "Private_networks"
+                                },
+                                {
+                                        "name": "internal"
+                                },
+                                {
+                                        "name": "UHE"
+                                }
+                        ]
+                },
+                {
+                        "name": "HTTPS-UHE",
+                        "family": "ipv4",
+                        "virtual-addr": "127.0.0.1",
+                        "virtual-ports": "443",
+                        "source-addr": "",
+                        "mode": "local",
+                        "protocol": "tcp",
+                        "scheduler": "rr",
+                        "sched-param": "none",
+                        "persistence": "none",
+                        "persist-ttl": "60",
+                        "helper": "none",
+                        "log": "none",
+                        "log-rtlimit": "0/second",
+                        "mark": "0x0",
+                        "priority": "1",
+                        "state": "up",
+                        "limits-ttl": "120",
+                        "new-rtlimit": "0/second",
+                        "new-rtlimit-burst": "0",
+                        "rst-rtlimit": "0/second",
+                        "rst-rtlimit-burst": "0",
+                        "est-connlimit": "0",
+                        "tcp-strict": "off",
+                        "queue": "-1",
+                        "verdict": "log drop accept",
+                        "addresses": [
+                                {
+                                        "name": "HTTPS-UHE-addr",
+                                        "family": "ipv4",
+                                        "ip-addr": "127.0.0.1",
+                                        "ports": "443",
+                                        "protocol": "tcp",
+                                        "used": "1"
+                                }
+                        ],
+                        "backends": [],
+                        "policies": [
+                                {
+                                        "name": "CIArmy"
+                                },
+                                {
+                                        "name": "TOR_nodes"
+                                },
+                                {
+                                        "name": "apache_list"
+                                },
+                                {
+                                        "name": "ftp_list"
+                                },
+                                {
+                                        "name": "bad_peers"
+                                },
+                                {
+                                        "name": "webexploit"
+                                },
+                                {
+                                        "name": "tor_list"
+                                },
+                                {
+                                        "name": "ssh_list"
+                                },
+                                {
+                                        "name": "wordpress_list"
+                                },
+                                {
+                                        "name": "ssh_brute_force"
+                                },
+                                {
+                                        "name": "spyware"
+                                },
+                                {
+                                        "name": "http_list"
+                                },
+                                {
+                                        "name": "mail_list"
+                                },
+                                {
+                                        "name": "mail_spammer"
+                                },
+                                {
+                                        "name": "proxy"
+                                },
+                                {
+                                        "name": "proxy_list"
+                                },
+                                {
+                                        "name": "geo_CN_china"
+                                },
+                                {
+                                        "name": "geo_RU_russia"
+                                },
+                                {
+                                        "name": "geo_TR_turkey"
+                                },
+                                {
+                                        "name": "internal"
+                                },
+                                {
+                                        "name": "Private_networks"
+                                },
+                                {
+                                        "name": "UHE"
+                                }
+                        ]
+                },
+                {
+                        "name": "http-uhe-edu-ec",
+                        "family": "ipv4",
+                        "virtual-addr": "127.0.0.1",
+                        "virtual-ports": "81",
+                        "source-addr": "",
+                        "mode": "local",
+                        "protocol": "tcp",
+                        "scheduler": "rr",
+                        "sched-param": "none",
+                        "persistence": "none",
+                        "persist-ttl": "60",
+                        "helper": "none",
+                        "log": "none",
+                        "log-rtlimit": "0/second",
+                        "mark": "0x0",
+                        "priority": "1",
+                        "state": "up",
+                        "limits-ttl": "120",
+                        "new-rtlimit": "0/second",
+                        "new-rtlimit-burst": "0",
+                        "rst-rtlimit": "0/second",
+                        "rst-rtlimit-burst": "0",
+                        "est-connlimit": "0",
+                        "tcp-strict": "off",
+                        "queue": "-1",
+                        "verdict": "log drop accept",
+                        "addresses": [
+                                {
+                                        "name": "http-uhe-edu-ec-addr",
+                                        "family": "ipv4",
+                                        "ip-addr": "127.0.0.1",
+                                        "ports": "81",
+                                        "protocol": "tcp",
+                                        "used": "1"
+                                }
+                        ],
+                        "backends": [],
+                        "policies": [
+                                {
+                                        "name": "geo_CN_china"
+                                },
+                                {
+                                        "name": "geo_RU_russia"
+                                },
+                                {
+                                        "name": "geo_TR_turkey"
+                                },
+                                {
+                                        "name": "CIArmy"
+                                },
+                                {
+                                        "name": "TOR_nodes"
+                                },
+                                {
+                                        "name": "tor_list"
+                                },
+                                {
+                                        "name": "apache_list"
+                                },
+                                {
+                                        "name": "ftp_list"
+                                },
+                                {
+                                        "name": "ssh_brute_force"
+                                },
+                                {
+                                        "name": "bad_peers"
+                                },
+                                {
+                                        "name": "ssh_list"
+                                },
+                                {
+                                        "name": "Private_networks"
+                                },
+                                {
+                                        "name": "UHE"
+                                },
+                                {
+                                        "name": "wordpress_list"
+                                },
+                                {
+                                        "name": "webexploit"
+                                },
+                                {
+                                        "name": "spyware"
+                                },
+                                {
+                                        "name": "proxy_list"
+                                },
+                                {
+                                        "name": "proxy"
+                                },
+                                {
+                                        "name": "mail_spammer"
+                                },
+                                {
+                                        "name": "mail_list"
+                                },
+                                {
+                                        "name": "internal"
+                                },
+                                {
+                                        "name": "http_list"
+                                }
+                        ]
+                },
+                {
+                        "name": "http8080",
+                        "family": "ipv4",
+                        "virtual-addr": "127.0.0.1",
+                        "virtual-ports": "8080",
+                        "source-addr": "",
+                        "mode": "local",
+                        "protocol": "tcp",
+                        "scheduler": "rr",
+                        "sched-param": "none",
+                        "persistence": "none",
+                        "persist-ttl": "60",
+                        "helper": "none",
+                        "log": "none",
+                        "log-rtlimit": "0/second",
+                        "mark": "0x0",
+                        "priority": "1",
+                        "state": "up",
+                        "limits-ttl": "120",
+                        "new-rtlimit": "0/second",
+                        "new-rtlimit-burst": "0",
+                        "rst-rtlimit": "0/second",
+                        "rst-rtlimit-burst": "0",
+                        "est-connlimit": "0",
+                        "tcp-strict": "off",
+                        "queue": "-1",
+                        "verdict": "log drop accept",
+                        "addresses": [
+                                {
+                                        "name": "http8080-addr",
+                                        "family": "ipv4",
+                                        "ip-addr": "127.0.0.1",
+                                        "ports": "8080",
+                                        "protocol": "tcp",
+                                        "used": "1"
+                                }
+                        ],
+                        "backends": [],
+                        "policies": [
+                                {
+                                        "name": "Private_networks"
+                                },
+                                {
+                                        "name": "UHE"
+                                },
+                                {
+                                        "name": "geo_RU_russia"
+                                },
+                                {
+                                        "name": "CIArmy"
+                                },
+                                {
+                                        "name": "TOR_nodes"
+                                },
+                                {
+                                        "name": "apache_list"
+                                },
+                                {
+                                        "name": "bad_peers"
+                                },
+                                {
+                                        "name": "ftp_list"
+                                },
+                                {
+                                        "name": "geo_CN_china"
+                                },
+                                {
+                                        "name": "wordpress_list"
+                                },
+                                {
+                                        "name": "webexploit"
+                                },
+                                {
+                                        "name": "tor_list"
+                                },
+                                {
+                                        "name": "ssh_list"
+                                },
+                                {
+                                        "name": "ssh_brute_force"
+                                },
+                                {
+                                        "name": "spyware"
+                                },
+                                {
+                                        "name": "proxy_list"
+                                },
+                                {
+                                        "name": "proxy"
+                                },
+                                {
+                                        "name": "mail_spammer"
+                                },
+                                {
+                                        "name": "mail_list"
+                                },
+                                {
+                                        "name": "internal"
+                                },
+                                {
+                                        "name": "http_list"
+                                },
+                                {
+                                        "name": "geo_TR_turkey"
+                                }
+                        ]
+                },
+                {
+                        "name": "httpinternal",
+                        "family": "ipv4",
+                        "virtual-addr": "127.0.0.1",
+                        "virtual-ports": "82",
+                        "source-addr": "",
+                        "mode": "local",
+                        "protocol": "tcp",
+                        "scheduler": "rr",
+                        "sched-param": "none",
+                        "persistence": "none",
+                        "persist-ttl": "60",
+                        "helper": "none",
+                        "log": "none",
+                        "log-rtlimit": "0/second",
+                        "mark": "0x0",
+                        "priority": "1",
+                        "state": "up",
+                        "limits-ttl": "120",
+                        "new-rtlimit": "0/second",
+                        "new-rtlimit-burst": "0",
+                        "rst-rtlimit": "0/second",
+                        "rst-rtlimit-burst": "0",
+                        "est-connlimit": "0",
+                        "tcp-strict": "off",
+                        "queue": "-1",
+                        "verdict": "log drop accept",
+                        "addresses": [
+                                {
+                                        "name": "httpinternal-addr",
+                                        "family": "ipv4",
+                                        "ip-addr": "127.0.0.1",
+                                        "ports": "82",
+                                        "protocol": "tcp",
+                                        "used": "1"
+                                }
+                        ],
+                        "backends": [],
+                        "policies": [
+                                {
+                                        "name": "geo_CN_china"
+                                },
+                                {
+                                        "name": "geo_RU_russia"
+                                },
+                                {
+                                        "name": "geo_TR_turkey"
+                                },
+                                {
+                                        "name": "proxy"
+                                },
+                                {
+                                        "name": "CIArmy"
+                                },
+                                {
+                                        "name": "TOR_nodes"
+                                },
+                                {
+                                        "name": "apache_list"
+                                },
+                                {
+                                        "name": "ftp_list"
+                                },
+                                {
+                                        "name": "bad_peers"
+                                },
+                                {
+                                        "name": "webexploit"
+                                },
+                                {
+                                        "name": "tor_list"
+                                },
+                                {
+                                        "name": "ssh_brute_force"
+                                },
+                                {
+                                        "name": "wordpress_list"
+                                },
+                                {
+                                        "name": "ssh_list"
+                                },
+                                {
+                                        "name": "spyware"
+                                },
+                                {
+                                        "name": "http_list"
+                                },
+                                {
+                                        "name": "mail_list"
+                                },
+                                {
+                                        "name": "mail_spammer"
+                                },
+                                {
+                                        "name": "proxy_list"
+                                },
+                                {
+                                        "name": "Private_networks"
+                                },
+                                {
+                                        "name": "internal"
+                                },
+                                {
+                                        "name": "UHE"
+                                }
+                        ]
+                },
+                {
+                        "name": "https-uhe-edu-ec",
+                        "family": "ipv4",
+                        "virtual-addr": "127.0.0.1",
+                        "virtual-ports": "445",
+                        "source-addr": "",
+                        "mode": "local",
+                        "protocol": "tcp",
+                        "scheduler": "rr",
+                        "sched-param": "none",
+                        "persistence": "none",
+                        "persist-ttl": "60",
+                        "helper": "none",
+                        "log": "none",
+                        "log-rtlimit": "0/second",
+                        "mark": "0x0",
+                        "priority": "1",
+                        "state": "up",
+                        "limits-ttl": "120",
+                        "new-rtlimit": "0/second",
+                        "new-rtlimit-burst": "0",
+                        "rst-rtlimit": "0/second",
+                        "rst-rtlimit-burst": "0",
+                        "est-connlimit": "0",
+                        "tcp-strict": "off",
+                        "queue": "-1",
+                        "verdict": "log drop accept",
+                        "addresses": [
+                                {
+                                        "name": "https-uhe-edu-ec-addr",
+                                        "family": "ipv4",
+                                        "ip-addr": "127.0.0.1",
+                                        "ports": "445",
+                                        "protocol": "tcp",
+                                        "used": "1"
+                                }
+                        ],
+                        "backends": [],
+                        "policies": [
+                                {
+                                        "name": "Private_networks"
+                                },
+                                {
+                                        "name": "CIArmy"
+                                },
+                                {
+                                        "name": "TOR_nodes"
+                                },
+                                {
+                                        "name": "apache_list"
+                                },
+                                {
+                                        "name": "ftp_list"
+                                },
+                                {
+                                        "name": "bad_peers"
+                                },
+                                {
+                                        "name": "webexploit"
+                                },
+                                {
+                                        "name": "tor_list"
+                                },
+                                {
+                                        "name": "ssh_list"
+                                },
+                                {
+                                        "name": "wordpress_list"
+                                },
+                                {
+                                        "name": "ssh_brute_force"
+                                },
+                                {
+                                        "name": "spyware"
+                                },
+                                {
+                                        "name": "http_list"
+                                },
+                                {
+                                        "name": "mail_list"
+                                },
+                                {
+                                        "name": "mail_spammer"
+                                },
+                                {
+                                        "name": "proxy"
+                                },
+                                {
+                                        "name": "proxy_list"
+                                },
+                                {
+                                        "name": "geo_CN_china"
+                                },
+                                {
+                                        "name": "geo_RU_russia"
+                                },
+                                {
+                                        "name": "internal"
+                                },
+                                {
+                                        "name": "UHE"
+                                },
+                                {
+                                        "name": "geo_TR_turkey"
+                                }
+                        ]
+                },
+                {
+                        "name": "httpsinternal",
+                        "family": "ipv4",
+                        "virtual-addr": "127.0.0.1",
+                        "virtual-ports": "446",
+                        "source-addr": "",
+                        "mode": "local",
+                        "protocol": "tcp",
+                        "scheduler": "rr",
+                        "sched-param": "none",
+                        "persistence": "none",
+                        "persist-ttl": "60",
+                        "helper": "none",
+                        "log": "none",
+                        "log-rtlimit": "0/second",
+                        "mark": "0x0",
+                        "priority": "1",
+                        "state": "up",
+                        "limits-ttl": "120",
+                        "new-rtlimit": "0/second",
+                        "new-rtlimit-burst": "0",
+                        "rst-rtlimit": "0/second",
+                        "rst-rtlimit-burst": "0",
+                        "est-connlimit": "0",
+                        "tcp-strict": "off",
+                        "queue": "-1",
+                        "verdict": "log drop accept",
+                        "addresses": [
+                                {
+                                        "name": "httpsinternal-addr",
+                                        "family": "ipv4",
+                                        "ip-addr": "127.0.0.1",
+                                        "ports": "446",
+                                        "protocol": "tcp",
+                                        "used": "1"
+                                }
+                        ],
+                        "backends": [],
+                        "policies": [
+                                {
+                                        "name": "Private_networks"
+                                },
+                                {
+                                        "name": "UHE"
+                                },
+                                {
+                                        "name": "geo_RU_russia"
+                                },
+                                {
+                                        "name": "CIArmy"
+                                },
+                                {
+                                        "name": "TOR_nodes"
+                                },
+                                {
+                                        "name": "apache_list"
+                                },
+                                {
+                                        "name": "bad_peers"
+                                },
+                                {
+                                        "name": "ftp_list"
+                                },
+                                {
+                                        "name": "geo_CN_china"
+                                },
+                                {
+                                        "name": "wordpress_list"
+                                },
+                                {
+                                        "name": "webexploit"
+                                },
+                                {
+                                        "name": "tor_list"
+                                },
+                                {
+                                        "name": "ssh_list"
+                                },
+                                {
+                                        "name": "ssh_brute_force"
+                                },
+                                {
+                                        "name": "spyware"
+                                },
+                                {
+                                        "name": "proxy_list"
+                                },
+                                {
+                                        "name": "proxy"
+                                },
+                                {
+                                        "name": "mail_spammer"
+                                },
+                                {
+                                        "name": "mail_list"
+                                },
+                                {
+                                        "name": "internal"
+                                },
+                                {
+                                        "name": "http_list"
+                                },
+                                {
+                                        "name": "geo_TR_turkey"
+                                }
+                        ]
+                },
+                {
+                        "name": "SIP-Internal",
+                        "family": "ipv4",
+                        "virtual-addr": "127.0.0.1",
+                        "virtual-ports": "5060,5061",
+                        "source-addr": "127.0.0.1",
+                        "mode": "snat",
+                        "protocol": "all",
+                        "scheduler": "weight",
+                        "sched-param": "none",
+                        "persistence": "none",
+                        "persist-ttl": "60",
+                        "helper": "sip",
+                        "log": "none",
+                        "log-rtlimit": "0/second",
+                        "mark": "0x0",
+                        "priority": "1",
+                        "state": "down",
+                        "limits-ttl": "120",
+                        "new-rtlimit": "0/second",
+                        "new-rtlimit-burst": "0",
+                        "rst-rtlimit": "0/second",
+                        "rst-rtlimit-burst": "0",
+                        "est-connlimit": "0",
+                        "tcp-strict": "off",
+                        "queue": "-1",
+                        "verdict": "log drop accept",
+                        "addresses": [
+                                {
+                                        "name": "SIP-Internal-addr",
+                                        "family": "ipv4",
+                                        "ip-addr": "127.0.0.1",
+                                        "ports": "5060,5061",
+                                        "protocol": "all",
+                                        "used": "1"
+                                }
+                        ],
+                        "backends": [
+                                {
+                                        "name": "bck0",
+                                        "ip-addr": "127.0.0.1",
+                                        "port": "",
+                                        "source-addr": "192.168.0.9",
+                                        "weight": "1",
+                                        "priority": "1",
+                                        "mark": "0x200",
+                                        "est-connlimit": "100",
+                                        "state": "up"
+                                }
+                        ],
+                        "policies": [
+                                {
+                                        "name": "Private_networks"
+                                },
+                                {
+                                        "name": "UHE"
+                                }
+                        ]
+                },
+                {
+                        "name": "SIP-External",
+                        "family": "ipv4",
+                        "virtual-addr": "127.0.0.1",
+                        "virtual-ports": "5050,5051",
+                        "source-addr": "127.0.0.1",
+                        "mode": "snat",
+                        "protocol": "all",
+                        "scheduler": "weight",
+                        "sched-param": "none",
+                        "persistence": "none",
+                        "persist-ttl": "60",
+                        "helper": "sip",
+                        "log": "none",
+                        "log-rtlimit": "0/second",
+                        "mark": "0x0",
+                        "priority": "1",
+                        "state": "up",
+                        "limits-ttl": "120",
+                        "new-rtlimit": "0/second",
+                        "new-rtlimit-burst": "0",
+                        "rst-rtlimit": "0/second",
+                        "rst-rtlimit-burst": "0",
+                        "est-connlimit": "0",
+                        "tcp-strict": "off",
+                        "queue": "-1",
+                        "verdict": "log drop accept",
+                        "addresses": [
+                                {
+                                        "name": "SIP-External-addr",
+                                        "family": "ipv4",
+                                        "ip-addr": "127.0.0.1",
+                                        "ports": "5050,5051",
+                                        "protocol": "all",
+                                        "used": "1"
+                                }
+                        ],
+                        "backends": [
+                                {
+                                        "name": "bck0",
+                                        "ip-addr": "192.168.0.9",
+                                        "port": "",
+                                        "source-addr": "192.168.0.9",
+                                        "weight": "1",
+                                        "priority": "1",
+                                        "mark": "0x201",
+                                        "est-connlimit": "100",
+                                        "state": "up"
+                                }
+                        ],
+                        "policies": [
+                                {
+                                        "name": "UHE"
+                                },
+                                {
+                                        "name": "Private_networks"
+                                },
+                                {
+                                        "name": "internal"
+                                }
+                        ]
+                }
+        ]
+}

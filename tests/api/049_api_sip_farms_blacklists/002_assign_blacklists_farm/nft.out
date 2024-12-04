@@ -1,0 +1,1796 @@
+table netdev nftlb {
+	set geo_CN_china {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set geo_RU_russia {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set geo_TR_turkey {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set proxy {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set CIArmy {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set TOR_nodes {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set apache_list {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set ftp_list {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set bad_peers {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set webexploit {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set tor_list {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set ssh_brute_force {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set wordpress_list {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set ssh_list {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set spyware {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set http_list {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set mail_list {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set mail_spammer {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set proxy_list {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set Private_networks {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set internal {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set UHE {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	map proto-services-lo {
+		type inet_proto . ipv4_addr . inet_service : verdict
+		elements = { tcp . 127.0.0.1 . 80 : goto HTTP-UHE,
+			     tcp . 127.0.0.1 . 81 : goto http-uhe-edu-ec,
+			     tcp . 127.0.0.1 . 82 : goto httpinternal,
+			     tcp . 127.0.0.1 . 8080 : goto http8080,
+			     tcp . 127.0.0.1 . 5050 : goto SIP-External,
+			     udp . 127.0.0.1 . 5050 : goto SIP-External,
+			     sctp . 127.0.0.1 . 5050 : goto SIP-External,
+			     tcp . 127.0.0.1 . 443 : goto HTTPS-UHE,
+			     tcp . 127.0.0.1 . 5051 : goto SIP-External,
+			     udp . 127.0.0.1 . 5051 : goto SIP-External,
+			     sctp . 127.0.0.1 . 5051 : goto SIP-External,
+			     tcp . 127.0.0.1 . 445 : goto https-uhe-edu-ec,
+			     tcp . 127.0.0.1 . 446 : goto httpsinternal,
+			     tcp . 127.0.0.1 . 5060 : goto SIP-Internal,
+			     udp . 127.0.0.1 . 5060 : goto SIP-Internal,
+			     sctp . 127.0.0.1 . 5060 : goto SIP-Internal,
+			     tcp . 127.0.0.1 . 5061 : goto SIP-Internal,
+			     udp . 127.0.0.1 . 5061 : goto SIP-Internal,
+			     sctp . 127.0.0.1 . 5061 : goto SIP-Internal }
+	}
+
+	set geo_CN_china-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_RU_russia-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_TR_turkey-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set proxy-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set CIArmy-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set TOR_nodes-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set apache_list-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ftp_list-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set bad_peers-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set webexploit-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set tor_list-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ssh_brute_force-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set wordpress_list-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ssh_list-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set spyware-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set http_list-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set mail_list-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set mail_spammer-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set proxy_list-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set Private_networks-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set internal-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set CIArmy-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set TOR_nodes-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set apache_list-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ftp_list-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set bad_peers-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set webexploit-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set tor_list-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ssh_list-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set wordpress_list-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ssh_brute_force-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set spyware-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set http_list-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set mail_list-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set mail_spammer-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set proxy-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set proxy_list-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_CN_china-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_RU_russia-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_TR_turkey-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set internal-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set Private_networks-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_CN_china-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_RU_russia-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_TR_turkey-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set CIArmy-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set TOR_nodes-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set tor_list-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set apache_list-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ftp_list-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ssh_brute_force-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set bad_peers-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ssh_list-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set Private_networks-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set UHE-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set wordpress_list-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set webexploit-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set spyware-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set proxy_list-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set proxy-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set mail_spammer-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set mail_list-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set internal-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set Private_networks-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set UHE-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_RU_russia-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set CIArmy-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set TOR_nodes-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set apache_list-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set bad_peers-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ftp_list-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_CN_china-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set wordpress_list-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set webexploit-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set tor_list-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ssh_list-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ssh_brute_force-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set spyware-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set proxy_list-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set proxy-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set mail_spammer-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set mail_list-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set internal-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set http_list-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_CN_china-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_RU_russia-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_TR_turkey-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set proxy-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set CIArmy-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set TOR_nodes-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set apache_list-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ftp_list-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set bad_peers-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set webexploit-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set tor_list-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ssh_brute_force-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set wordpress_list-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ssh_list-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set spyware-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set http_list-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set mail_list-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set mail_spammer-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set proxy_list-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set Private_networks-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set internal-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set Private_networks-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set CIArmy-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set TOR_nodes-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set apache_list-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ftp_list-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set bad_peers-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set webexploit-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set tor_list-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ssh_list-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set wordpress_list-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ssh_brute_force-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set spyware-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set http_list-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set mail_list-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set mail_spammer-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set proxy-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set proxy_list-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_CN_china-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_RU_russia-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set internal-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set UHE-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set Private_networks-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set UHE-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_RU_russia-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set CIArmy-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set TOR_nodes-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set apache_list-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set bad_peers-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ftp_list-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_CN_china-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set wordpress_list-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set webexploit-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set tor_list-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ssh_list-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set ssh_brute_force-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set spyware-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set proxy_list-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set proxy-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set mail_spammer-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set mail_list-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set internal-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set http_list-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set Private_networks-SIP-Internal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set UHE-SIP-External-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set Private_networks-SIP-External-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set UHE-HTTP-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set UHE-HTTPS-UHE-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set http_list-http-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_TR_turkey-http8080-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set UHE-httpinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_TR_turkey-https-uhe-edu-ec-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set geo_TR_turkey-httpsinternal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set UHE-SIP-Internal-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	set internal-SIP-External-cnt {
+		type ipv4_addr
+		size 65535
+		flags dynamic,timeout
+		counter
+		timeout 2m
+	}
+
+	chain ingress-lo {
+		type filter hook ingress device "lo" priority 101; policy accept;
+		ip protocol . ip daddr . th dport vmap @proto-services-lo
+	}
+
+	chain HTTP-UHE {
+		ip saddr @geo_CN_china add @geo_CN_china-HTTP-UHE-cnt { ip saddr } log prefix "[BL,geo_CN_china,HTTP-UHE]" drop
+		ip saddr @geo_RU_russia add @geo_RU_russia-HTTP-UHE-cnt { ip saddr } log prefix "[BL,geo_RU_russia,HTTP-UHE]" drop
+		ip saddr @geo_TR_turkey add @geo_TR_turkey-HTTP-UHE-cnt { ip saddr } log prefix "[BL,geo_TR_turkey,HTTP-UHE]" drop
+		ip saddr @proxy add @proxy-HTTP-UHE-cnt { ip saddr } log prefix "[BL,proxy,HTTP-UHE]" drop
+		ip saddr @CIArmy add @CIArmy-HTTP-UHE-cnt { ip saddr } log prefix "[BL,CIArmy,HTTP-UHE]" drop
+		ip saddr @TOR_nodes add @TOR_nodes-HTTP-UHE-cnt { ip saddr } log prefix "[BL,TOR_nodes,HTTP-UHE]" drop
+		ip saddr @apache_list add @apache_list-HTTP-UHE-cnt { ip saddr } log prefix "[BL,apache_list,HTTP-UHE]" drop
+		ip saddr @ftp_list add @ftp_list-HTTP-UHE-cnt { ip saddr } log prefix "[BL,ftp_list,HTTP-UHE]" drop
+		ip saddr @bad_peers add @bad_peers-HTTP-UHE-cnt { ip saddr } log prefix "[BL,bad_peers,HTTP-UHE]" drop
+		ip saddr @webexploit add @webexploit-HTTP-UHE-cnt { ip saddr } log prefix "[BL,webexploit,HTTP-UHE]" drop
+		ip saddr @tor_list add @tor_list-HTTP-UHE-cnt { ip saddr } log prefix "[BL,tor_list,HTTP-UHE]" drop
+		ip saddr @ssh_brute_force add @ssh_brute_force-HTTP-UHE-cnt { ip saddr } log prefix "[BL,ssh_brute_force,HTTP-UHE]" drop
+		ip saddr @wordpress_list add @wordpress_list-HTTP-UHE-cnt { ip saddr } log prefix "[BL,wordpress_list,HTTP-UHE]" drop
+		ip saddr @ssh_list add @ssh_list-HTTP-UHE-cnt { ip saddr } log prefix "[BL,ssh_list,HTTP-UHE]" drop
+		ip saddr @spyware add @spyware-HTTP-UHE-cnt { ip saddr } log prefix "[BL,spyware,HTTP-UHE]" drop
+		ip saddr @http_list add @http_list-HTTP-UHE-cnt { ip saddr } log prefix "[BL,http_list,HTTP-UHE]" drop
+		ip saddr @mail_list add @mail_list-HTTP-UHE-cnt { ip saddr } log prefix "[BL,mail_list,HTTP-UHE]" drop
+		ip saddr @mail_spammer add @mail_spammer-HTTP-UHE-cnt { ip saddr } log prefix "[BL,mail_spammer,HTTP-UHE]" drop
+		ip saddr @proxy_list add @proxy_list-HTTP-UHE-cnt { ip saddr } log prefix "[BL,proxy_list,HTTP-UHE]" drop
+		ip saddr @Private_networks add @Private_networks-HTTP-UHE-cnt { ip saddr } log prefix "[WL,Private_networks,HTTP-UHE]" accept
+		ip saddr @internal add @internal-HTTP-UHE-cnt { ip saddr } log prefix "[WL,internal,HTTP-UHE]" accept
+		ip saddr @UHE add @UHE-HTTP-UHE-cnt { ip saddr } log prefix "[WL,UHE,HTTP-UHE]" accept
+	}
+
+	chain HTTPS-UHE {
+		ip saddr @CIArmy add @CIArmy-HTTPS-UHE-cnt { ip saddr } log prefix "[BL,CIArmy,HTTPS-UHE]" drop
+		ip saddr @TOR_nodes add @TOR_nodes-HTTPS-UHE-cnt { ip saddr } log prefix "[BL,TOR_nodes,HTTPS-UHE]" drop
+		ip saddr @apache_list add @apache_list-HTTPS-UHE-cnt { ip saddr } log prefix "[BL,apache_list,HTTPS-UHE]" drop
+		ip saddr @ftp_list add @ftp_list-HTTPS-UHE-cnt { ip saddr } log prefix "[BL,ftp_list,HTTPS-UHE]" drop
+		ip saddr @bad_peers add @bad_peers-HTTPS-UHE-cnt { ip saddr } log prefix "[BL,bad_peers,HTTPS-UHE]" drop
+		ip saddr @webexploit add @webexploit-HTTPS-UHE-cnt { ip saddr } log prefix "[BL,webexploit,HTTPS-UHE]" drop
+		ip saddr @tor_list add @tor_list-HTTPS-UHE-cnt { ip saddr } log prefix "[BL,tor_list,HTTPS-UHE]" drop
+		ip saddr @ssh_list add @ssh_list-HTTPS-UHE-cnt { ip saddr } log prefix "[BL,ssh_list,HTTPS-UHE]" drop
+		ip saddr @wordpress_list add @wordpress_list-HTTPS-UHE-cnt { ip saddr } log prefix "[BL,wordpress_list,HTTPS-UHE]" drop
+		ip saddr @ssh_brute_force add @ssh_brute_force-HTTPS-UHE-cnt { ip saddr } log prefix "[BL,ssh_brute_force,HTTPS-UHE]" drop
+		ip saddr @spyware add @spyware-HTTPS-UHE-cnt { ip saddr } log prefix "[BL,spyware,HTTPS-UHE]" drop
+		ip saddr @http_list add @http_list-HTTPS-UHE-cnt { ip saddr } log prefix "[BL,http_list,HTTPS-UHE]" drop
+		ip saddr @mail_list add @mail_list-HTTPS-UHE-cnt { ip saddr } log prefix "[BL,mail_list,HTTPS-UHE]" drop
+		ip saddr @mail_spammer add @mail_spammer-HTTPS-UHE-cnt { ip saddr } log prefix "[BL,mail_spammer,HTTPS-UHE]" drop
+		ip saddr @proxy add @proxy-HTTPS-UHE-cnt { ip saddr } log prefix "[BL,proxy,HTTPS-UHE]" drop
+		ip saddr @proxy_list add @proxy_list-HTTPS-UHE-cnt { ip saddr } log prefix "[BL,proxy_list,HTTPS-UHE]" drop
+		ip saddr @geo_CN_china add @geo_CN_china-HTTPS-UHE-cnt { ip saddr } log prefix "[BL,geo_CN_china,HTTPS-UHE]" drop
+		ip saddr @geo_RU_russia add @geo_RU_russia-HTTPS-UHE-cnt { ip saddr } log prefix "[BL,geo_RU_russia,HTTPS-UHE]" drop
+		ip saddr @geo_TR_turkey add @geo_TR_turkey-HTTPS-UHE-cnt { ip saddr } log prefix "[BL,geo_TR_turkey,HTTPS-UHE]" drop
+		ip saddr @internal add @internal-HTTPS-UHE-cnt { ip saddr } log prefix "[WL,internal,HTTPS-UHE]" accept
+		ip saddr @Private_networks add @Private_networks-HTTPS-UHE-cnt { ip saddr } log prefix "[WL,Private_networks,HTTPS-UHE]" accept
+		ip saddr @UHE add @UHE-HTTPS-UHE-cnt { ip saddr } log prefix "[WL,UHE,HTTPS-UHE]" accept
+	}
+
+	chain http-uhe-edu-ec {
+		ip saddr @geo_CN_china add @geo_CN_china-http-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,geo_CN_china,http-uhe-edu-ec]" drop
+		ip saddr @geo_RU_russia add @geo_RU_russia-http-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,geo_RU_russia,http-uhe-edu-ec]" drop
+		ip saddr @geo_TR_turkey add @geo_TR_turkey-http-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,geo_TR_turkey,http-uhe-edu-ec]" drop
+		ip saddr @CIArmy add @CIArmy-http-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,CIArmy,http-uhe-edu-ec]" drop
+		ip saddr @TOR_nodes add @TOR_nodes-http-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,TOR_nodes,http-uhe-edu-ec]" drop
+		ip saddr @tor_list add @tor_list-http-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,tor_list,http-uhe-edu-ec]" drop
+		ip saddr @apache_list add @apache_list-http-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,apache_list,http-uhe-edu-ec]" drop
+		ip saddr @ftp_list add @ftp_list-http-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,ftp_list,http-uhe-edu-ec]" drop
+		ip saddr @ssh_brute_force add @ssh_brute_force-http-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,ssh_brute_force,http-uhe-edu-ec]" drop
+		ip saddr @bad_peers add @bad_peers-http-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,bad_peers,http-uhe-edu-ec]" drop
+		ip saddr @ssh_list add @ssh_list-http-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,ssh_list,http-uhe-edu-ec]" drop
+		ip saddr @Private_networks add @Private_networks-http-uhe-edu-ec-cnt { ip saddr } log prefix "[WL,Private_networks,http-uhe-edu-ec]" accept
+		ip saddr @UHE add @UHE-http-uhe-edu-ec-cnt { ip saddr } log prefix "[WL,UHE,http-uhe-edu-ec]" accept
+		ip saddr @wordpress_list add @wordpress_list-http-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,wordpress_list,http-uhe-edu-ec]" drop
+		ip saddr @webexploit add @webexploit-http-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,webexploit,http-uhe-edu-ec]" drop
+		ip saddr @spyware add @spyware-http-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,spyware,http-uhe-edu-ec]" drop
+		ip saddr @proxy_list add @proxy_list-http-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,proxy_list,http-uhe-edu-ec]" drop
+		ip saddr @proxy add @proxy-http-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,proxy,http-uhe-edu-ec]" drop
+		ip saddr @mail_spammer add @mail_spammer-http-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,mail_spammer,http-uhe-edu-ec]" drop
+		ip saddr @mail_list add @mail_list-http-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,mail_list,http-uhe-edu-ec]" drop
+		ip saddr @internal add @internal-http-uhe-edu-ec-cnt { ip saddr } log prefix "[WL,internal,http-uhe-edu-ec]" accept
+		ip saddr @http_list add @http_list-http-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,http_list,http-uhe-edu-ec]" drop
+	}
+
+	chain http8080 {
+		ip saddr @Private_networks add @Private_networks-http8080-cnt { ip saddr } log prefix "[WL,Private_networks,http8080]" accept
+		ip saddr @UHE add @UHE-http8080-cnt { ip saddr } log prefix "[WL,UHE,http8080]" accept
+		ip saddr @geo_RU_russia add @geo_RU_russia-http8080-cnt { ip saddr } log prefix "[BL,geo_RU_russia,http8080]" drop
+		ip saddr @CIArmy add @CIArmy-http8080-cnt { ip saddr } log prefix "[BL,CIArmy,http8080]" drop
+		ip saddr @TOR_nodes add @TOR_nodes-http8080-cnt { ip saddr } log prefix "[BL,TOR_nodes,http8080]" drop
+		ip saddr @apache_list add @apache_list-http8080-cnt { ip saddr } log prefix "[BL,apache_list,http8080]" drop
+		ip saddr @bad_peers add @bad_peers-http8080-cnt { ip saddr } log prefix "[BL,bad_peers,http8080]" drop
+		ip saddr @ftp_list add @ftp_list-http8080-cnt { ip saddr } log prefix "[BL,ftp_list,http8080]" drop
+		ip saddr @geo_CN_china add @geo_CN_china-http8080-cnt { ip saddr } log prefix "[BL,geo_CN_china,http8080]" drop
+		ip saddr @wordpress_list add @wordpress_list-http8080-cnt { ip saddr } log prefix "[BL,wordpress_list,http8080]" drop
+		ip saddr @webexploit add @webexploit-http8080-cnt { ip saddr } log prefix "[BL,webexploit,http8080]" drop
+		ip saddr @tor_list add @tor_list-http8080-cnt { ip saddr } log prefix "[BL,tor_list,http8080]" drop
+		ip saddr @ssh_list add @ssh_list-http8080-cnt { ip saddr } log prefix "[BL,ssh_list,http8080]" drop
+		ip saddr @ssh_brute_force add @ssh_brute_force-http8080-cnt { ip saddr } log prefix "[BL,ssh_brute_force,http8080]" drop
+		ip saddr @spyware add @spyware-http8080-cnt { ip saddr } log prefix "[BL,spyware,http8080]" drop
+		ip saddr @proxy_list add @proxy_list-http8080-cnt { ip saddr } log prefix "[BL,proxy_list,http8080]" drop
+		ip saddr @proxy add @proxy-http8080-cnt { ip saddr } log prefix "[BL,proxy,http8080]" drop
+		ip saddr @mail_spammer add @mail_spammer-http8080-cnt { ip saddr } log prefix "[BL,mail_spammer,http8080]" drop
+		ip saddr @mail_list add @mail_list-http8080-cnt { ip saddr } log prefix "[BL,mail_list,http8080]" drop
+		ip saddr @internal add @internal-http8080-cnt { ip saddr } log prefix "[WL,internal,http8080]" accept
+		ip saddr @http_list add @http_list-http8080-cnt { ip saddr } log prefix "[BL,http_list,http8080]" drop
+		ip saddr @geo_TR_turkey add @geo_TR_turkey-http8080-cnt { ip saddr } log prefix "[BL,geo_TR_turkey,http8080]" drop
+	}
+
+	chain httpinternal {
+		ip saddr @geo_CN_china add @geo_CN_china-httpinternal-cnt { ip saddr } log prefix "[BL,geo_CN_china,httpinternal]" drop
+		ip saddr @geo_RU_russia add @geo_RU_russia-httpinternal-cnt { ip saddr } log prefix "[BL,geo_RU_russia,httpinternal]" drop
+		ip saddr @geo_TR_turkey add @geo_TR_turkey-httpinternal-cnt { ip saddr } log prefix "[BL,geo_TR_turkey,httpinternal]" drop
+		ip saddr @proxy add @proxy-httpinternal-cnt { ip saddr } log prefix "[BL,proxy,httpinternal]" drop
+		ip saddr @CIArmy add @CIArmy-httpinternal-cnt { ip saddr } log prefix "[BL,CIArmy,httpinternal]" drop
+		ip saddr @TOR_nodes add @TOR_nodes-httpinternal-cnt { ip saddr } log prefix "[BL,TOR_nodes,httpinternal]" drop
+		ip saddr @apache_list add @apache_list-httpinternal-cnt { ip saddr } log prefix "[BL,apache_list,httpinternal]" drop
+		ip saddr @ftp_list add @ftp_list-httpinternal-cnt { ip saddr } log prefix "[BL,ftp_list,httpinternal]" drop
+		ip saddr @bad_peers add @bad_peers-httpinternal-cnt { ip saddr } log prefix "[BL,bad_peers,httpinternal]" drop
+		ip saddr @webexploit add @webexploit-httpinternal-cnt { ip saddr } log prefix "[BL,webexploit,httpinternal]" drop
+		ip saddr @tor_list add @tor_list-httpinternal-cnt { ip saddr } log prefix "[BL,tor_list,httpinternal]" drop
+		ip saddr @ssh_brute_force add @ssh_brute_force-httpinternal-cnt { ip saddr } log prefix "[BL,ssh_brute_force,httpinternal]" drop
+		ip saddr @wordpress_list add @wordpress_list-httpinternal-cnt { ip saddr } log prefix "[BL,wordpress_list,httpinternal]" drop
+		ip saddr @ssh_list add @ssh_list-httpinternal-cnt { ip saddr } log prefix "[BL,ssh_list,httpinternal]" drop
+		ip saddr @spyware add @spyware-httpinternal-cnt { ip saddr } log prefix "[BL,spyware,httpinternal]" drop
+		ip saddr @http_list add @http_list-httpinternal-cnt { ip saddr } log prefix "[BL,http_list,httpinternal]" drop
+		ip saddr @mail_list add @mail_list-httpinternal-cnt { ip saddr } log prefix "[BL,mail_list,httpinternal]" drop
+		ip saddr @mail_spammer add @mail_spammer-httpinternal-cnt { ip saddr } log prefix "[BL,mail_spammer,httpinternal]" drop
+		ip saddr @proxy_list add @proxy_list-httpinternal-cnt { ip saddr } log prefix "[BL,proxy_list,httpinternal]" drop
+		ip saddr @Private_networks add @Private_networks-httpinternal-cnt { ip saddr } log prefix "[WL,Private_networks,httpinternal]" accept
+		ip saddr @internal add @internal-httpinternal-cnt { ip saddr } log prefix "[WL,internal,httpinternal]" accept
+		ip saddr @UHE add @UHE-httpinternal-cnt { ip saddr } log prefix "[WL,UHE,httpinternal]" accept
+	}
+
+	chain https-uhe-edu-ec {
+		ip saddr @Private_networks add @Private_networks-https-uhe-edu-ec-cnt { ip saddr } log prefix "[WL,Private_networks,https-uhe-edu-ec]" accept
+		ip saddr @CIArmy add @CIArmy-https-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,CIArmy,https-uhe-edu-ec]" drop
+		ip saddr @TOR_nodes add @TOR_nodes-https-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,TOR_nodes,https-uhe-edu-ec]" drop
+		ip saddr @apache_list add @apache_list-https-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,apache_list,https-uhe-edu-ec]" drop
+		ip saddr @ftp_list add @ftp_list-https-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,ftp_list,https-uhe-edu-ec]" drop
+		ip saddr @bad_peers add @bad_peers-https-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,bad_peers,https-uhe-edu-ec]" drop
+		ip saddr @webexploit add @webexploit-https-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,webexploit,https-uhe-edu-ec]" drop
+		ip saddr @tor_list add @tor_list-https-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,tor_list,https-uhe-edu-ec]" drop
+		ip saddr @ssh_list add @ssh_list-https-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,ssh_list,https-uhe-edu-ec]" drop
+		ip saddr @wordpress_list add @wordpress_list-https-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,wordpress_list,https-uhe-edu-ec]" drop
+		ip saddr @ssh_brute_force add @ssh_brute_force-https-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,ssh_brute_force,https-uhe-edu-ec]" drop
+		ip saddr @spyware add @spyware-https-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,spyware,https-uhe-edu-ec]" drop
+		ip saddr @http_list add @http_list-https-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,http_list,https-uhe-edu-ec]" drop
+		ip saddr @mail_list add @mail_list-https-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,mail_list,https-uhe-edu-ec]" drop
+		ip saddr @mail_spammer add @mail_spammer-https-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,mail_spammer,https-uhe-edu-ec]" drop
+		ip saddr @proxy add @proxy-https-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,proxy,https-uhe-edu-ec]" drop
+		ip saddr @proxy_list add @proxy_list-https-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,proxy_list,https-uhe-edu-ec]" drop
+		ip saddr @geo_CN_china add @geo_CN_china-https-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,geo_CN_china,https-uhe-edu-ec]" drop
+		ip saddr @geo_RU_russia add @geo_RU_russia-https-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,geo_RU_russia,https-uhe-edu-ec]" drop
+		ip saddr @internal add @internal-https-uhe-edu-ec-cnt { ip saddr } log prefix "[WL,internal,https-uhe-edu-ec]" accept
+		ip saddr @UHE add @UHE-https-uhe-edu-ec-cnt { ip saddr } log prefix "[WL,UHE,https-uhe-edu-ec]" accept
+		ip saddr @geo_TR_turkey add @geo_TR_turkey-https-uhe-edu-ec-cnt { ip saddr } log prefix "[BL,geo_TR_turkey,https-uhe-edu-ec]" drop
+	}
+
+	chain httpsinternal {
+		ip saddr @Private_networks add @Private_networks-httpsinternal-cnt { ip saddr } log prefix "[WL,Private_networks,httpsinternal]" accept
+		ip saddr @UHE add @UHE-httpsinternal-cnt { ip saddr } log prefix "[WL,UHE,httpsinternal]" accept
+		ip saddr @geo_RU_russia add @geo_RU_russia-httpsinternal-cnt { ip saddr } log prefix "[BL,geo_RU_russia,httpsinternal]" drop
+		ip saddr @CIArmy add @CIArmy-httpsinternal-cnt { ip saddr } log prefix "[BL,CIArmy,httpsinternal]" drop
+		ip saddr @TOR_nodes add @TOR_nodes-httpsinternal-cnt { ip saddr } log prefix "[BL,TOR_nodes,httpsinternal]" drop
+		ip saddr @apache_list add @apache_list-httpsinternal-cnt { ip saddr } log prefix "[BL,apache_list,httpsinternal]" drop
+		ip saddr @bad_peers add @bad_peers-httpsinternal-cnt { ip saddr } log prefix "[BL,bad_peers,httpsinternal]" drop
+		ip saddr @ftp_list add @ftp_list-httpsinternal-cnt { ip saddr } log prefix "[BL,ftp_list,httpsinternal]" drop
+		ip saddr @geo_CN_china add @geo_CN_china-httpsinternal-cnt { ip saddr } log prefix "[BL,geo_CN_china,httpsinternal]" drop
+		ip saddr @wordpress_list add @wordpress_list-httpsinternal-cnt { ip saddr } log prefix "[BL,wordpress_list,httpsinternal]" drop
+		ip saddr @webexploit add @webexploit-httpsinternal-cnt { ip saddr } log prefix "[BL,webexploit,httpsinternal]" drop
+		ip saddr @tor_list add @tor_list-httpsinternal-cnt { ip saddr } log prefix "[BL,tor_list,httpsinternal]" drop
+		ip saddr @ssh_list add @ssh_list-httpsinternal-cnt { ip saddr } log prefix "[BL,ssh_list,httpsinternal]" drop
+		ip saddr @ssh_brute_force add @ssh_brute_force-httpsinternal-cnt { ip saddr } log prefix "[BL,ssh_brute_force,httpsinternal]" drop
+		ip saddr @spyware add @spyware-httpsinternal-cnt { ip saddr } log prefix "[BL,spyware,httpsinternal]" drop
+		ip saddr @proxy_list add @proxy_list-httpsinternal-cnt { ip saddr } log prefix "[BL,proxy_list,httpsinternal]" drop
+		ip saddr @proxy add @proxy-httpsinternal-cnt { ip saddr } log prefix "[BL,proxy,httpsinternal]" drop
+		ip saddr @mail_spammer add @mail_spammer-httpsinternal-cnt { ip saddr } log prefix "[BL,mail_spammer,httpsinternal]" drop
+		ip saddr @mail_list add @mail_list-httpsinternal-cnt { ip saddr } log prefix "[BL,mail_list,httpsinternal]" drop
+		ip saddr @internal add @internal-httpsinternal-cnt { ip saddr } log prefix "[WL,internal,httpsinternal]" accept
+		ip saddr @http_list add @http_list-httpsinternal-cnt { ip saddr } log prefix "[BL,http_list,httpsinternal]" drop
+		ip saddr @geo_TR_turkey add @geo_TR_turkey-httpsinternal-cnt { ip saddr } log prefix "[BL,geo_TR_turkey,httpsinternal]" drop
+	}
+
+	chain SIP-Internal {
+		ip saddr @Private_networks add @Private_networks-SIP-Internal-cnt { ip saddr } log prefix "[WL,Private_networks,SIP-Internal]" accept
+		ip saddr @UHE add @UHE-SIP-Internal-cnt { ip saddr } log prefix "[WL,UHE,SIP-Internal]" accept
+	}
+
+	chain SIP-External {
+		ip saddr @UHE add @UHE-SIP-External-cnt { ip saddr } log prefix "[WL,UHE,SIP-External]" accept
+		ip saddr @Private_networks add @Private_networks-SIP-External-cnt { ip saddr } log prefix "[WL,Private_networks,SIP-External]" accept
+		ip saddr @internal add @internal-SIP-External-cnt { ip saddr } log prefix "[WL,internal,SIP-External]" accept
+	}
+}
+table ip nftlb {
+	ct helper SIP-Internal-sip-tcp {
+		type "sip" protocol tcp
+		l3proto ip
+	}
+
+	ct helper SIP-Internal-sip-udp {
+		type "sip" protocol udp
+		l3proto ip
+	}
+
+	ct helper SIP-External-sip-tcp {
+		type "sip" protocol tcp
+		l3proto ip
+	}
+
+	ct helper SIP-External-sip-udp {
+		type "sip" protocol udp
+		l3proto ip
+	}
+
+	map nat-proto-services {
+		type inet_proto . ipv4_addr . inet_service : verdict
+		elements = { tcp . 127.0.0.1 . 80 : goto nat-HTTP-UHE,
+			     tcp . 127.0.0.1 . 81 : goto nat-http-uhe-edu-ec,
+			     tcp . 127.0.0.1 . 82 : goto nat-httpinternal,
+			     tcp . 127.0.0.1 . 8080 : goto nat-http8080,
+			     tcp . 127.0.0.1 . 5050 : goto nat-SIP-External,
+			     udp . 127.0.0.1 . 5050 : goto nat-SIP-External,
+			     sctp . 127.0.0.1 . 5050 : goto nat-SIP-External,
+			     tcp . 127.0.0.1 . 443 : goto nat-HTTPS-UHE,
+			     tcp . 127.0.0.1 . 5051 : goto nat-SIP-External,
+			     udp . 127.0.0.1 . 5051 : goto nat-SIP-External,
+			     sctp . 127.0.0.1 . 5051 : goto nat-SIP-External,
+			     tcp . 127.0.0.1 . 445 : goto nat-https-uhe-edu-ec,
+			     tcp . 127.0.0.1 . 446 : goto nat-httpsinternal,
+			     tcp . 127.0.0.1 . 5060 : goto nat-SIP-Internal,
+			     udp . 127.0.0.1 . 5060 : goto nat-SIP-Internal,
+			     sctp . 127.0.0.1 . 5060 : goto nat-SIP-Internal,
+			     tcp . 127.0.0.1 . 5061 : goto nat-SIP-Internal,
+			     udp . 127.0.0.1 . 5061 : goto nat-SIP-Internal,
+			     sctp . 127.0.0.1 . 5061 : goto nat-SIP-Internal }
+	}
+
+	map services-back-m {
+		type mark : ipv4_addr
+		elements = { 0x00000200 : 192.168.0.9, 0x00000201 : 192.168.0.9 }
+	}
+
+	map filter-proto-services {
+		type inet_proto . ipv4_addr . inet_service : verdict
+		elements = { tcp . 127.0.0.1 . 80 : goto filter-HTTP-UHE,
+			     tcp . 127.0.0.1 . 81 : goto filter-http-uhe-edu-ec,
+			     tcp . 127.0.0.1 . 82 : goto filter-httpinternal,
+			     tcp . 127.0.0.1 . 8080 : goto filter-http8080,
+			     tcp . 127.0.0.1 . 5050 : goto filter-SIP-External,
+			     udp . 127.0.0.1 . 5050 : goto filter-SIP-External,
+			     sctp . 127.0.0.1 . 5050 : goto filter-SIP-External,
+			     tcp . 127.0.0.1 . 443 : goto filter-HTTPS-UHE,
+			     tcp . 127.0.0.1 . 5051 : goto filter-SIP-External,
+			     udp . 127.0.0.1 . 5051 : goto filter-SIP-External,
+			     sctp . 127.0.0.1 . 5051 : goto filter-SIP-External,
+			     tcp . 127.0.0.1 . 445 : goto filter-https-uhe-edu-ec,
+			     tcp . 127.0.0.1 . 446 : goto filter-httpsinternal,
+			     tcp . 127.0.0.1 . 5060 : goto filter-SIP-Internal,
+			     udp . 127.0.0.1 . 5060 : goto filter-SIP-Internal,
+			     sctp . 127.0.0.1 . 5060 : goto filter-SIP-Internal,
+			     tcp . 127.0.0.1 . 5061 : goto filter-SIP-Internal,
+			     udp . 127.0.0.1 . 5061 : goto filter-SIP-Internal,
+			     sctp . 127.0.0.1 . 5061 : goto filter-SIP-Internal }
+	}
+
+	chain prerouting {
+		type nat hook prerouting priority dstnat; policy accept;
+		ct state new meta mark 0x00000000 meta mark set ct mark
+		ip protocol . ip daddr . th dport vmap @nat-proto-services
+	}
+
+	chain postrouting {
+		type nat hook postrouting priority srcnat; policy accept;
+		ct mark 0x00000000 ct mark set meta mark
+		ct mark 0x80000000/1 masquerade
+		snat to ct mark map @services-back-m
+	}
+
+	chain filter {
+		type filter hook prerouting priority mangle; policy accept;
+		meta mark 0x00000000 meta mark set ct mark
+		ip protocol . ip daddr . th dport vmap @filter-proto-services
+	}
+
+	chain filter-HTTP-UHE {
+	}
+
+	chain nat-HTTP-UHE {
+	}
+
+	chain filter-HTTPS-UHE {
+	}
+
+	chain nat-HTTPS-UHE {
+	}
+
+	chain filter-http-uhe-edu-ec {
+	}
+
+	chain nat-http-uhe-edu-ec {
+	}
+
+	chain filter-http8080 {
+	}
+
+	chain nat-http8080 {
+	}
+
+	chain filter-httpinternal {
+	}
+
+	chain nat-httpinternal {
+	}
+
+	chain filter-https-uhe-edu-ec {
+	}
+
+	chain nat-https-uhe-edu-ec {
+	}
+
+	chain filter-httpsinternal {
+	}
+
+	chain nat-httpsinternal {
+	}
+
+	chain filter-SIP-Internal {
+		ip protocol tcp ct helper set "SIP-Internal-sip-tcp"
+		ip protocol udp ct helper set "SIP-Internal-sip-udp"
+		ct state new ct mark 0x00000000 ct mark set numgen random mod 1 map { 0 : 0x00000200 }
+		ct mark 0x00000200 ct count over 100 log prefix "est-connlimit-SIP-Internal-bck0 " drop
+	}
+
+	chain nat-SIP-Internal {
+		dnat to ct mark map { 0x00000200 : 127.0.0.1 }
+	}
+
+	chain filter-SIP-External {
+		ip protocol tcp ct helper set "SIP-External-sip-tcp"
+		ip protocol udp ct helper set "SIP-External-sip-udp"
+		ct state new ct mark 0x00000000 ct mark set numgen random mod 1 map { 0 : 0x00000201 }
+		ct mark 0x00000201 ct count over 100 log prefix "est-connlimit-SIP-External-bck0 " drop
+	}
+
+	chain nat-SIP-External {
+		dnat to ct mark map { 0x00000201 : 192.168.0.9 }
+	}
+}

@@ -1,0 +1,155 @@
+table netdev nftlb {
+	set geo_CN_china {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set geo_RU_russia {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set geo_TR_turkey {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set proxy {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set CIArmy {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set TOR_nodes {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set apache_list {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set ftp_list {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set bad_peers {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set webexploit {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set tor_list {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set ssh_brute_force {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set wordpress_list {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set ssh_list {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set spyware {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set http_list {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set mail_list {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set mail_spammer {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set proxy_list {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set Private_networks {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set internal {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+
+	set UHE {
+		type ipv4_addr
+		flags interval
+		counter
+		auto-merge
+	}
+}
