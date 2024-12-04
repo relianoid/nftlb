@@ -779,10 +779,10 @@ int server_init(void)
 	if (nftserver.host == NULL)
 		switch(nftserver.family) {
 		case AF_INET:
-			host = "0.0.0.0";
+			host = "127.0.0.1";
 			break;
 		case AF_INET6:
-			host = "::";
+			host = "::1";
 			break;
 		default:
 			host = INADDR_ANY;
