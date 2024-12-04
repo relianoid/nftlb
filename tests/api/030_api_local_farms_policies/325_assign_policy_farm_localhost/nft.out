@@ -4,8 +4,7 @@ table netdev nftlb {
 		flags interval
 		counter
 		auto-merge
-		elements = { 35.195.60.76 counter packets 0 bytes 0, 35.195.60.77 counter packets 0 bytes 0,
-			     35.195.60.78 counter packets 0 bytes 0, 127.0.0.1 counter packets 0 bytes 0 }
+		elements = { 35.195.60.76-35.195.60.78 counter packets 0 bytes 0, 127.0.0.1 counter packets 0 bytes 0 }
 	}
 
 	map proto-services-lo {
