@@ -14,3 +14,4 @@ libnftables.pc
 libtool
 .deps
 *.o
+report-*
