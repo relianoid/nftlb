@@ -33,7 +33,7 @@
 #include "network.h"
 #include "config.h"
 #include "nft.h"
-#include "zcu_log.h"
+#include "u_log.h"
 
 struct address * address_create(char *name)
 {
@@ -41,7 +41,7 @@ struct address * address_create(char *name)
 
 	struct address *paddress = (struct address *)malloc(sizeof(struct address));
 	if (!paddress) {
-		zcu_log_print(LOG_ERR, "Address memory allocation error");
+		u_log_print(LOG_ERR, "Address memory allocation error");
 		return NULL;
 	}
 
@@ -80,7 +80,7 @@ int address_delete(struct address *paddress)
 	if (!paddress)
 		return 0;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: deleting address %s",
+	u_log_print(LOG_DEBUG, "%s():%d: deleting address %s",
 				   __FUNCTION__, __LINE__, paddress->name);
 
 	list_del(&paddress->list);
@@ -177,41 +177,41 @@ void address_print(struct address *a)
 {
 	char buf[100] = {};
 
-	zcu_log_print(LOG_DEBUG," [address] ");
-	zcu_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_NAME, a->name);
+	u_log_print(LOG_DEBUG," [address] ");
+	u_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_NAME, a->name);
 
 	if (a->fqdn)
-		zcu_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_FQDN, a->fqdn);
+		u_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_FQDN, a->fqdn);
 
 	if (a->iface)
-		zcu_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_IFACE, a->iface);
+		u_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_IFACE, a->iface);
 
 	if (a->iethaddr)
-		zcu_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_IETHADDR, a->iethaddr);
+		u_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_IETHADDR, a->iethaddr);
 
-	zcu_log_print(LOG_DEBUG,"   *[ifidx] %d", a->ifidx);
+	u_log_print(LOG_DEBUG,"   *[ifidx] %d", a->ifidx);
 
 	if (a->ipaddr)
-		zcu_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_IPADDR, a->ipaddr);
+		u_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_IPADDR, a->ipaddr);
 
 	if (a->ports)
-		zcu_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_PORTS, a->ports);
+		u_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_PORTS, a->ports);
 
-	zcu_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_FAMILY, obj_print_family(a->family));
-	zcu_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_PROTO, obj_print_proto(a->protocol));
+	u_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_FAMILY, obj_print_family(a->family));
+	u_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_PROTO, obj_print_proto(a->protocol));
 
 	obj_print_verdict(a->verdict, (char *)buf);
-	zcu_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_VERDICT, buf);
+	u_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_VERDICT, buf);
 
 	if (a->logprefix)
-		zcu_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_LOGPREFIX, a->logprefix);
+		u_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_LOGPREFIX, a->logprefix);
 	obj_print_rtlimit(buf, a->logrtlimit, a->logrtlimit_unit);
-	zcu_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_LOG_RTLIMIT, buf);
+	u_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_LOG_RTLIMIT, buf);
 
-	zcu_log_print(LOG_DEBUG,"   *[used] %d", a->used);
-	zcu_log_print(LOG_DEBUG,"   *[%s] %d", CONFIG_KEY_ACTION, a->action);
-	zcu_log_print(LOG_DEBUG,"   *[policies_action] %d", a->policies_action);
-	zcu_log_print(LOG_DEBUG,"   *[nft_chains] %x", a->nft_chains);
+	u_log_print(LOG_DEBUG,"   *[used] %d", a->used);
+	u_log_print(LOG_DEBUG,"   *[%s] %d", CONFIG_KEY_ACTION, a->action);
+	u_log_print(LOG_DEBUG,"   *[policies_action] %d", a->policies_action);
+	u_log_print(LOG_DEBUG,"   *[nft_chains] %x", a->nft_chains);
 
 	if (a->policies_used > 0)
 		addresspolicy_s_print(a);
@@ -225,10 +225,10 @@ static int address_set_iface_info(struct address *a)
 	int if_index;
 	int ret = 0;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: address %s set interface info for interface", __FUNCTION__, __LINE__, a->name);
+	u_log_print(LOG_DEBUG, "%s():%d: address %s set interface info for interface", __FUNCTION__, __LINE__, a->name);
 
 	if (a->iface && strcmp(a->iface, IFACE_LOOPBACK) == 0) {
-		zcu_log_print(LOG_DEBUG, "%s():%d: address %s doesn't require input netinfo, loopback interface", __FUNCTION__, __LINE__, a->name);
+		u_log_print(LOG_DEBUG, "%s():%d: address %s doesn't require input netinfo, loopback interface", __FUNCTION__, __LINE__, a->name);
 		a->ifidx = 0;
 		return 0;
 	}
@@ -236,7 +236,7 @@ static int address_set_iface_info(struct address *a)
 	ret = net_get_local_ifname_per_vip(a->ipaddr, if_str);
 
 	if (ret != 0) {
-		zcu_log_print(LOG_ERR, "%s():%d: inbound interface not found with IP %s by address %s", __FUNCTION__, __LINE__, a->ipaddr, a->name);
+		u_log_print(LOG_ERR, "%s():%d: inbound interface not found with IP %s by address %s", __FUNCTION__, __LINE__, a->ipaddr, a->name);
 		return -1;
 	}
 
@@ -248,7 +248,7 @@ static int address_set_iface_info(struct address *a)
 	if_index = if_nametoindex(a->iface);
 
 	if (if_index == 0) {
-		zcu_log_print(LOG_ERR, "%s():%d: index of the inbound interface %s in address %s not found", __FUNCTION__, __LINE__, a->iface, a->name);
+		u_log_print(LOG_ERR, "%s():%d: index of the inbound interface %s in address %s not found", __FUNCTION__, __LINE__, a->iface, a->name);
 		return -1;
 	}
 
@@ -281,7 +281,7 @@ static int address_set_verdict(struct address *a, int new_value)
 {
 	int old_value = a->verdict;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: address %s old verdict %d new verdict %d", __FUNCTION__, __LINE__, a->name, old_value, new_value);
+	u_log_print(LOG_DEBUG, "%s():%d: address %s old verdict %d new verdict %d", __FUNCTION__, __LINE__, a->name, old_value, new_value);
 
 	if (new_value == VALUE_VERDICT_NONE)
 		return 1;
@@ -293,7 +293,7 @@ static int address_set_verdict(struct address *a, int new_value)
 
 int address_set_netinfo(struct address *a)
 {
-	zcu_log_print(LOG_DEBUG, "%s():%d: address %s", __FUNCTION__, __LINE__, a->name);
+	u_log_print(LOG_DEBUG, "%s():%d: address %s", __FUNCTION__, __LINE__, a->name);
 
 	address_set_iface_info(a);
 	farm_s_set_oface_info(a);
@@ -308,7 +308,7 @@ int address_changed(struct config_pair *c)
 	if (!a)
 		return -1;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: address %s with param %d", __FUNCTION__, __LINE__, a->name, c->key);
+	u_log_print(LOG_DEBUG, "%s():%d: address %s with param %d", __FUNCTION__, __LINE__, a->name, c->key);
 
 	switch (c->key) {
 	case KEY_NAME:
@@ -399,7 +399,7 @@ int address_set_attribute(struct config_pair *c)
 	int ret = PARSER_FAILED;
 
 	if (c->key != KEY_NAME && !a) {
-		zcu_log_print(LOG_INFO, "%s():%d: address UNKNOWN", __FUNCTION__, __LINE__);
+		u_log_print(LOG_INFO, "%s():%d: address UNKNOWN", __FUNCTION__, __LINE__);
 		return PARSER_OBJ_UNKNOWN;
 	}
 
@@ -481,7 +481,7 @@ int address_not_used(struct address *a)
 
 int address_set_action(struct address *a, int action)
 {
-	zcu_log_print(LOG_DEBUG, "%s():%d: address %s action is %d - new action %d", __FUNCTION__, __LINE__, a->name, a->action, action);
+	u_log_print(LOG_DEBUG, "%s():%d: address %s action is %d - new action %d", __FUNCTION__, __LINE__, a->name, a->action, action);
 
 	if (a->action == action)
 		return 0;
@@ -527,12 +527,12 @@ int address_no_ipaddr(struct address *a)
 
 int address_rulerize(struct address *a)
 {
-	zcu_log_print(LOG_DEBUG, "%s():%d: rulerize address %s", __FUNCTION__, __LINE__, a->name);
+	u_log_print(LOG_DEBUG, "%s():%d: rulerize address %s", __FUNCTION__, __LINE__, a->name);
 
 	address_print(a);
 
 	if (a->used) {
-		zcu_log_print(LOG_INFO, "%s():%d: address %s won't be rulerized", __FUNCTION__, __LINE__, a->name);
+		u_log_print(LOG_INFO, "%s():%d: address %s won't be rulerized", __FUNCTION__, __LINE__, a->name);
 		return 0;
 	}
 
@@ -546,7 +546,7 @@ int address_s_rulerize(void)
 	int ret = 0;
 	int output = 0;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: rulerize addresses", __FUNCTION__, __LINE__);
+	u_log_print(LOG_DEBUG, "%s():%d: rulerize addresses", __FUNCTION__, __LINE__);
 
 	list_for_each_entry_safe(a, next, addresses, list) {
 		ret = address_rulerize(a);
@@ -566,7 +566,7 @@ int address_s_lookup_policy_action(char *name, int action)
 	struct list_head *addresses = obj_get_addresses();
 	struct address *a, *next;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: name %s action %d", __FUNCTION__, __LINE__, name, action);
+	u_log_print(LOG_DEBUG, "%s():%d: name %s action %d", __FUNCTION__, __LINE__, name, action);
 
 	list_for_each_entry_safe(a, next, addresses, list)
 		addresspolicy_s_lookup_policy_action(a, name, action);
@@ -576,7 +576,7 @@ int address_s_lookup_policy_action(char *name, int action)
 
 int address_validate_iface(struct address *a)
 {
-	zcu_log_print(LOG_DEBUG, "%s():%d: validating inbound address interface of %s", __FUNCTION__, __LINE__, a->name);
+	u_log_print(LOG_DEBUG, "%s():%d: validating inbound address interface of %s", __FUNCTION__, __LINE__, a->name);
 	if (!a || !a->iface || obj_equ_attribute_string(a->iface, ""))
 		return 1;
 	return 0;
@@ -584,7 +584,7 @@ int address_validate_iface(struct address *a)
 
 int address_validate_iether(struct address *a)
 {
-	zcu_log_print(LOG_DEBUG, "%s():%d: validating inbound address ether of %s", __FUNCTION__, __LINE__, a->name);
+	u_log_print(LOG_DEBUG, "%s():%d: validating inbound address ether of %s", __FUNCTION__, __LINE__, a->name);
 	if (!a || !a->iethaddr || obj_equ_attribute_string(a->iethaddr, ""))
 		return 1;
 	return 0;

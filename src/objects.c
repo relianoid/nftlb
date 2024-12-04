@@ -32,8 +32,8 @@
 #include "farmaddress.h"
 #include "addresspolicy.h"
 #include "nft.h"
-#include "zcu_string.h"
-#include "zcu_log.h"
+#include "u_string.h"
+#include "u_log.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -110,13 +110,13 @@ void obj_set_total_addresses(int new_value)
 
 int obj_get_dsr_counter(void)
 {
-	zcu_log_print(LOG_DEBUG, "%s():%d: current dsr counter is %d", __FUNCTION__, __LINE__, dsr_counter);
+	u_log_print(LOG_DEBUG, "%s():%d: current dsr counter is %d", __FUNCTION__, __LINE__, dsr_counter);
 	return dsr_counter;
 }
 
 void obj_set_dsr_counter(int new_value)
 {
-	zcu_log_print(LOG_DEBUG, "%s():%d: new dsr counter is %d", __FUNCTION__, __LINE__, new_value);
+	u_log_print(LOG_DEBUG, "%s():%d: new dsr counter is %d", __FUNCTION__, __LINE__, new_value);
 
 	if (new_value >= 0)
 		dsr_counter = new_value;
@@ -557,7 +557,7 @@ int obj_set_attribute(struct config_pair *c, int actionable, int apply_action)
 {
 	int ret = 0;
 	int action = ACTION_NONE;
-	zcu_log_print(LOG_DEBUG, "%s():%d: actionable is %d", __FUNCTION__, __LINE__, actionable);
+	u_log_print(LOG_DEBUG, "%s():%d: actionable is %d", __FUNCTION__, __LINE__, actionable);
 
 	switch (c->level) {
 	case LEVEL_FARMS:
@@ -653,7 +653,7 @@ int obj_set_attribute(struct config_pair *c, int actionable, int apply_action)
 			addresspolicy_pos_actionable(c);
 		break;
 	default:
-		zcu_log_print(LOG_ERR, "%s():%d: unknown level %d", __FUNCTION__, __LINE__, c->level);
+		u_log_print(LOG_ERR, "%s():%d: unknown level %d", __FUNCTION__, __LINE__, c->level);
 		return PARSER_STRUCT_FAILED;
 	}
 
@@ -667,11 +667,11 @@ int obj_set_attribute_string(char *src, char **dst)
 	*dst = (char *)malloc(size);
 
 	if (!*dst) {
-		zcu_log_print(LOG_ERR, "Attribute memory allocation error");
+		u_log_print(LOG_ERR, "Attribute memory allocation error");
 		return -1;
 	}
 
-	zcu_str_snprintf(*dst, size-1, src);
+	u_str_snprintf(*dst, size-1, src);
 
 	return 0;
 }
@@ -771,17 +771,17 @@ int obj_recovery(void)
 		return 0;
 
 	cmdtry++;
-	zcu_log_print(LOG_ERR, "recovery in progress...");
+	u_log_print(LOG_ERR, "recovery in progress...");
 	nft_reset();
 	policy_s_set_action(ACTION_START);
 	farm_s_set_reload_start(ACTION_START);
 	reload_err = obj_rulerize(OBJ_START);
 	if (!reload_err) {
-		zcu_log_print(LOG_ERR, "nft recovered...");
+		u_log_print(LOG_ERR, "nft recovered...");
 		cmdtry = 0;
 		return 1;
 	} else
-		zcu_log_print(LOG_ERR, "recovery not successful...");
+		u_log_print(LOG_ERR, "recovery not successful...");
 
 	return 0;
 }

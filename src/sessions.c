@@ -28,24 +28,24 @@
 #include "farmaddress.h"
 #include "objects.h"
 #include "nft.h"
-#include "zcu_string.h"
-#include "zcu_log.h"
+#include "u_string.h"
+#include "u_log.h"
 
 static struct session * session_create(struct farm *f, int type, char *client, char *bck, char *expiration)
 {
 	struct session *s;
 	struct backend *b;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: farm %s type %d client %s bck %s expiration %s", __FUNCTION__, __LINE__, f->name, type, client, bck, expiration);
+	u_log_print(LOG_DEBUG, "%s():%d: farm %s type %d client %s bck %s expiration %s", __FUNCTION__, __LINE__, f->name, type, client, bck, expiration);
 
 	if (!client || strcmp(client, "") == 0) {
-		zcu_log_print(LOG_ERR, "%s():%d: missing data", __FUNCTION__, __LINE__);
+		u_log_print(LOG_ERR, "%s():%d: missing data", __FUNCTION__, __LINE__);
 		return NULL;
 	}
 
 	s = (struct session *)malloc(sizeof(struct session));
 	if (!s) {
-		zcu_log_print(LOG_ERR, "Session memory allocation error");
+		u_log_print(LOG_ERR, "Session memory allocation error");
 		return NULL;
 	}
 
@@ -111,20 +111,20 @@ new_session:
 	to_found = 0;
 
 	if ((fin_ptr = strstr(ini_ptr, " timeout ")) != NULL) {
-		zcu_str_snprintf(elem_client, fin_ptr - ini_ptr, ini_ptr);
+		u_str_snprintf(elem_client, fin_ptr - ini_ptr, ini_ptr);
 		to_found = 1;
 	}
 
 	if ((fin_ptr = strstr(ini_ptr, " expires ")) != NULL) {
 		if (!to_found)
-			zcu_str_snprintf(elem_client, fin_ptr - ini_ptr, ini_ptr);
+			u_str_snprintf(elem_client, fin_ptr - ini_ptr, ini_ptr);
 		fin_ptr += 9;
 		ini_ptr = fin_ptr;
 	} else
 		return 0;
 
 	if ((fin_ptr = strstr(ini_ptr, " : ")) != NULL) {
-		zcu_str_snprintf(elem_exp, fin_ptr - ini_ptr, ini_ptr);
+		u_str_snprintf(elem_exp, fin_ptr - ini_ptr, ini_ptr);
 		fin_ptr += 3;
 		ini_ptr = fin_ptr;
 	} else
@@ -137,7 +137,7 @@ new_session:
 			return 0;
 	}
 
-	zcu_str_snprintf(elem_bck, fin_ptr - ini_ptr, ini_ptr);
+	u_str_snprintf(elem_bck, fin_ptr - ini_ptr, ini_ptr);
 	fin_ptr += 1;
 	ini_ptr = fin_ptr;
 
@@ -157,7 +157,7 @@ new_session:
 
 static int session_delete_node(struct session *s, int type)
 {
-	zcu_log_print(LOG_DEBUG, "%s():%d: client %s", __FUNCTION__, __LINE__, s->client);
+	u_log_print(LOG_DEBUG, "%s():%d: client %s", __FUNCTION__, __LINE__, s->client);
 
 	list_del(&s->list);
 
@@ -178,7 +178,7 @@ static int session_delete_node(struct session *s, int type)
 
 int session_set_action(struct session *s, int type, int action)
 {
-	zcu_log_print(LOG_DEBUG, "%s():%d: session %s action is %d - new action %d", __FUNCTION__, __LINE__, s->client, s->action, action);
+	u_log_print(LOG_DEBUG, "%s():%d: session %s action is %d - new action %d", __FUNCTION__, __LINE__, s->client, s->action, action);
 
 	if (s->action == action)
 		return 0;
@@ -237,7 +237,7 @@ int session_s_delete(struct farm *f, int type)
 	struct session *s;
 	struct session *next;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: farm %s type %d", __FUNCTION__, __LINE__, f->name, type);
+	u_log_print(LOG_DEBUG, "%s():%d: farm %s type %d", __FUNCTION__, __LINE__, f->name, type);
 
 	if (type == SESSION_TYPE_TIMED)
 		sessions = &f->timed_sessions;
@@ -272,30 +272,30 @@ void session_s_print(struct farm *f)
 	struct session *s;
 
 	list_for_each_entry(s, &f->static_sessions, list) {
-		zcu_log_print(LOG_DEBUG,"    [session] ");
-		zcu_log_print(LOG_DEBUG,"       [client] %s", s->client);
+		u_log_print(LOG_DEBUG,"    [session] ");
+		u_log_print(LOG_DEBUG,"       [client] %s", s->client);
 
 		if (!s->bck)
-			zcu_log_print(LOG_DEBUG,"       [backend] %s", UNDEFINED_VALUE);
+			u_log_print(LOG_DEBUG,"       [backend] %s", UNDEFINED_VALUE);
 		else
-			zcu_log_print(LOG_DEBUG,"       [backend] %s", s->bck->name);
+			u_log_print(LOG_DEBUG,"       [backend] %s", s->bck->name);
 
-		zcu_log_print(LOG_DEBUG,"       *[state] %s", obj_print_state(s->state));
-		zcu_log_print(LOG_DEBUG,"       *[action] %d", s->action);
+		u_log_print(LOG_DEBUG,"       *[state] %s", obj_print_state(s->state));
+		u_log_print(LOG_DEBUG,"       *[action] %d", s->action);
 	}
 
 	list_for_each_entry(s, &f->timed_sessions, list) {
-		zcu_log_print(LOG_DEBUG,"    [session] ");
-		zcu_log_print(LOG_DEBUG,"       [client] %s", s->client);
+		u_log_print(LOG_DEBUG,"    [session] ");
+		u_log_print(LOG_DEBUG,"       [client] %s", s->client);
 
 		if (!s->bck)
-			zcu_log_print(LOG_DEBUG,"       [backend] %s", UNDEFINED_VALUE);
+			u_log_print(LOG_DEBUG,"       [backend] %s", UNDEFINED_VALUE);
 		else
-			zcu_log_print(LOG_DEBUG,"       [backend] %s", s->bck->name);
+			u_log_print(LOG_DEBUG,"       [backend] %s", s->bck->name);
 
-		zcu_log_print(LOG_DEBUG,"       [expiration] %s", s->expiration);
-		zcu_log_print(LOG_DEBUG,"       *[state] %s", obj_print_state(s->state));
-		zcu_log_print(LOG_DEBUG,"       *[action] %d", s->action);
+		u_log_print(LOG_DEBUG,"       [expiration] %s", s->expiration);
+		u_log_print(LOG_DEBUG,"       *[state] %s", obj_print_state(s->state));
+		u_log_print(LOG_DEBUG,"       *[action] %d", s->action);
 	}
 }
 
@@ -305,7 +305,7 @@ int session_get_timed(struct farm *f)
 	struct nftst *n = nftst_create_from_farm(f);
 	const char *buf;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: farm %s", __FUNCTION__, __LINE__, f->name);
+	u_log_print(LOG_DEBUG, "%s():%d: farm %s", __FUNCTION__, __LINE__, f->name);
 
 	f->total_timed_sessions = 0;
 	list_for_each_entry(fa, &f->addresses, list) {
@@ -332,7 +332,7 @@ int session_backend_action(struct farm *f, struct backend *b, int action)
 	struct session *s, *next;
 	int hastimed = f->total_timed_sessions;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: farm %s backend %s action %d", __FUNCTION__, __LINE__, f->name, b->name, action);
+	u_log_print(LOG_DEBUG, "%s():%d: farm %s backend %s action %d", __FUNCTION__, __LINE__, f->name, b->name, action);
 
 	if (f->total_static_sessions != 0) {
 		list_for_each_entry_safe(s, next, &f->static_sessions, list) {
@@ -404,7 +404,7 @@ int session_pre_actionable(struct config_pair *c)
 	if (!f || !s)
 		return -1;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: pre actionable session farm %s", __FUNCTION__, __LINE__, f->name);
+	u_log_print(LOG_DEBUG, "%s():%d: pre actionable session farm %s", __FUNCTION__, __LINE__, f->name);
 
 	switch (c->key) {
 	case KEY_CLIENT:
@@ -430,7 +430,7 @@ int session_pos_actionable(struct config_pair *c)
 	if (!f || !s)
 		return -1;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: pos actionable session %s of farm %s with param %d", __FUNCTION__, __LINE__, s->client, f->name, c->key);
+	u_log_print(LOG_DEBUG, "%s():%d: pos actionable session %s of farm %s with param %d", __FUNCTION__, __LINE__, s->client, f->name, c->key);
 
 	switch (c->key) {
 	case KEY_CLIENT:

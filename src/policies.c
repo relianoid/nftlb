@@ -28,7 +28,7 @@
 #include "objects.h"
 #include "config.h"
 #include "nft.h"
-#include "zcu_log.h"
+#include "u_log.h"
 
 static struct policy * policy_create(char *name)
 {
@@ -36,7 +36,7 @@ static struct policy * policy_create(char *name)
 
 	struct policy *p = (struct policy *)malloc(sizeof(struct policy));
 	if (!p) {
-		zcu_log_print(LOG_ERR, "Policy memory allocation error");
+		u_log_print(LOG_ERR, "Policy memory allocation error");
 		return NULL;
 	}
 
@@ -82,15 +82,15 @@ static int policy_set_family(struct policy *p, int new_value)
 {
 	int old_value = p->family;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: policy %s old family %d new family %d", __FUNCTION__, __LINE__, p->name, old_value, new_value);
+	u_log_print(LOG_DEBUG, "%s():%d: policy %s old family %d new family %d", __FUNCTION__, __LINE__, p->name, old_value, new_value);
 
 	if (new_value != VALUE_FAMILY_IPV4 && new_value != VALUE_FAMILY_IPV6) {
-		zcu_log_print(LOG_INFO, "%s():%d: family %d not supported for policies", __FUNCTION__, __LINE__, new_value);
+		u_log_print(LOG_INFO, "%s():%d: family %d not supported for policies", __FUNCTION__, __LINE__, new_value);
 		return 0;
 	}
 
 	if (old_value == new_value) {
-		zcu_log_print(LOG_DEBUG, "%s():%d: family %d without change for policy %s", __FUNCTION__, __LINE__, p->family, p->name);
+		u_log_print(LOG_DEBUG, "%s():%d: family %d without change for policy %s", __FUNCTION__, __LINE__, p->family, p->name);
 		return 0;
 	}
 
@@ -103,7 +103,7 @@ static int policy_set_type(struct policy *p, int new_value)
 {
 	int old_value = p->type;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: policy %s old type %d new type %d", __FUNCTION__, __LINE__, p->name, old_value, new_value);
+	u_log_print(LOG_DEBUG, "%s():%d: policy %s old type %d new type %d", __FUNCTION__, __LINE__, p->name, old_value, new_value);
 
 	p->type = new_value;
 
@@ -112,19 +112,19 @@ static int policy_set_type(struct policy *p, int new_value)
 
 void policy_print(struct policy *p)
 {
-	zcu_log_print(LOG_DEBUG," [policy] ");
-	zcu_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_NAME, p->name);
-	zcu_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_TYPE, obj_print_policy_type(p->type));
+	u_log_print(LOG_DEBUG," [policy] ");
+	u_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_NAME, p->name);
+	u_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_TYPE, obj_print_policy_type(p->type));
 
-	zcu_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_ROUTE, obj_print_policy_route(p->route));
-	zcu_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_FAMILY, obj_print_family(p->family));
-	zcu_log_print(LOG_DEBUG,"    [%s] %d", CONFIG_KEY_TIMEOUT, p->timeout);
+	u_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_ROUTE, obj_print_policy_route(p->route));
+	u_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_FAMILY, obj_print_family(p->family));
+	u_log_print(LOG_DEBUG,"    [%s] %d", CONFIG_KEY_TIMEOUT, p->timeout);
 	if (p->logprefix)
-		zcu_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_LOGPREFIX, p->logprefix);
+		u_log_print(LOG_DEBUG,"    [%s] %s", CONFIG_KEY_LOGPREFIX, p->logprefix);
 
-	zcu_log_print(LOG_DEBUG,"    *[used] %d", p->used);
-	zcu_log_print(LOG_DEBUG,"    *[total_elem] %d", p->total_elem);
-	zcu_log_print(LOG_DEBUG,"    *[%s] %d", CONFIG_KEY_ACTION, p->action);
+	u_log_print(LOG_DEBUG,"    *[used] %d", p->used);
+	u_log_print(LOG_DEBUG,"    *[total_elem] %d", p->total_elem);
+	u_log_print(LOG_DEBUG,"    *[%s] %d", CONFIG_KEY_ACTION, p->action);
 
 	if (p->total_elem != 0)
 		element_s_print(p);
@@ -239,7 +239,7 @@ int policy_set_attribute(struct config_pair *c)
 
 int policy_set_action(struct policy *p, int action)
 {
-	zcu_log_print(LOG_DEBUG, "%s():%d: policy %s set action %d", __FUNCTION__, __LINE__, p->name, action);
+	u_log_print(LOG_DEBUG, "%s():%d: policy %s set action %d", __FUNCTION__, __LINE__, p->name, action);
 
 	if (p->action == action || (p->action == ACTION_START && action == ACTION_RELOAD))
 		return 0;
@@ -278,7 +278,7 @@ int policy_pre_actionable(struct config_pair *c)
 	if (!p)
 		return -1;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: pos actionable policy %s with param %d action is %d", __FUNCTION__, __LINE__, p->name, c->key, p->action);
+	u_log_print(LOG_DEBUG, "%s():%d: pos actionable policy %s with param %d action is %d", __FUNCTION__, __LINE__, p->name, c->key, p->action);
 
 	switch (c->key) {
 	case KEY_NAME:
@@ -305,7 +305,7 @@ int policy_pos_actionable(struct config_pair *c)
 	if (!p)
 		return -1;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: pos actionable policy %s with param %d action is %d", __FUNCTION__, __LINE__, p->name, c->key, p->action);
+	u_log_print(LOG_DEBUG, "%s():%d: pos actionable policy %s with param %d action is %d", __FUNCTION__, __LINE__, p->name, c->key, p->action);
 
 	switch (c->key) {
 	case KEY_NAME:
@@ -328,12 +328,12 @@ int policy_pos_actionable(struct config_pair *c)
 int policy_rulerize(struct policy *p)
 {
 	int ret = 0;
-	zcu_log_print(LOG_DEBUG, "%s():%d: rulerize policy %s", __FUNCTION__, __LINE__, p->name);
+	u_log_print(LOG_DEBUG, "%s():%d: rulerize policy %s", __FUNCTION__, __LINE__, p->name);
 
 	policy_print(p);
 
 	if (p->action == ACTION_NONE) {
-		zcu_log_print(LOG_INFO, "%s():%d: policy %s won't be rulerized", __FUNCTION__, __LINE__, p->name);
+		u_log_print(LOG_INFO, "%s():%d: policy %s won't be rulerized", __FUNCTION__, __LINE__, p->name);
 		return 0;
 	}
 
@@ -348,7 +348,7 @@ int policy_s_rulerize(void)
 	int ret = 0;
 	int output = 0;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: rulerize all policies", __FUNCTION__, __LINE__);
+	u_log_print(LOG_DEBUG, "%s():%d: rulerize all policies", __FUNCTION__, __LINE__);
 
 	struct list_head *policies = obj_get_policies();
 

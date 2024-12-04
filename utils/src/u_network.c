@@ -15,14 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "zcu_network.h"
-#include "zcu_log.h"
+#include "u_network.h"
+#include "u_log.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-#define ZCU_MAX_IDENT	100
+#define U_MAX_IDENT	100
 
-int zcu_soc_equal_sockaddr(const struct sockaddr *addr1,
+int u_soc_equal_sockaddr(const struct sockaddr *addr1,
 			   const struct sockaddr *addr2, int compare_port)
 {
 	if (addr1->sa_family != addr2->sa_family)
@@ -66,12 +66,12 @@ int zcu_soc_equal_sockaddr(const struct sockaddr *addr1,
 /*
  * Search for a host name, return the addrinfo for it
  */
-int zcu_net_get_host(const char *name, struct addrinfo *res, int ai_family, int port)
+int u_net_get_host(const char *name, struct addrinfo *res, int ai_family, int port)
 {
 	struct addrinfo *chain, *ap;
 	struct addrinfo hints;
 	int ret_val;
-	char port_str[ZCU_MAX_IDENT] = { 0 };
+	char port_str[U_MAX_IDENT] = { 0 };
 
 	memset(&hints, 0, sizeof(hints));
 	hints.ai_family = ai_family;
@@ -79,7 +79,7 @@ int zcu_net_get_host(const char *name, struct addrinfo *res, int ai_family, int 
 	hints.ai_flags = AI_CANONNAME;
 
 	if (port > 0)
-		snprintf(port_str, ZCU_MAX_IDENT, "%d", port);
+		snprintf(port_str, U_MAX_IDENT, "%d", port);
 
 	if ((ret_val = getaddrinfo(name, port_str, &hints, &chain)) == 0) {
 		for (ap = chain; ap != NULL; ap = ap->ai_next)
@@ -101,12 +101,12 @@ int zcu_net_get_host(const char *name, struct addrinfo *res, int ai_family, int 
 	return ret_val;
 }
 
-struct addrinfo *zcu_net_get_address(const char *address, int port)
+struct addrinfo *u_net_get_address(const char *address, int port)
 {
 	struct addrinfo hints;
 	struct addrinfo *result = NULL;
 	int sfd;
-	char port_str[ZCU_MAX_IDENT] = { 0 };
+	char port_str[U_MAX_IDENT] = { 0 };
 
 	memset(&hints, 0, sizeof(struct addrinfo));
 	hints.ai_family = AF_UNSPEC; /* Allow IPv4 or IPv6 */
@@ -117,11 +117,11 @@ struct addrinfo *zcu_net_get_address(const char *address, int port)
 	hints.ai_addr = NULL;
 	hints.ai_next = NULL;
 	if (port > 0)
-		snprintf(port_str, ZCU_MAX_IDENT, "%d", port);
+		snprintf(port_str, U_MAX_IDENT, "%d", port);
 
 	sfd = getaddrinfo(address, port_str, &hints, &result);
 	if (sfd != 0) {
-		zcu_log_print(LOG_NOTICE, "%s():%d: getaddrinfo: %s",
+		u_log_print(LOG_NOTICE, "%s():%d: getaddrinfo: %s",
 			      __FUNCTION__, __LINE__, gai_strerror(sfd));
 		return NULL;
 	}

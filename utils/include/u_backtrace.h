@@ -15,17 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _ZCU_STRING_H_
-#define _ZCU_STRING_H_
+#ifndef _U_BACKTRACE_H_
+#define _U_BACKTRACE_H_
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-void zcu_str_snprintf(char *strdst, int size, char *strsrc);
+void u_bt_print_symbols(void);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _ZCU_STRING_H_ */
+#endif /* _U_BACKTRACE_H_ */

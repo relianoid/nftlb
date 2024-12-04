@@ -15,37 +15,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _ZCU_SBUFFER_H_
-#define _ZCU_SBUFFER_H_
+#ifndef _U_NETWORK_H_
+#define _U_NETWORK_H_
 
-#include <stdarg.h>
-#include "zcu_common.h"
-
-#define EXTRA_SIZE 1024
-
-struct zcu_buffer {
-	int size;
-	int next;
-	char *data;
-};
+#include <netdb.h>
+#include <sys/socket.h>
+#include <sys/un.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-int zcu_buf_get_size(struct zcu_buffer *buf);
-char *zcu_buf_get_next(struct zcu_buffer *buf);
-int zcu_buf_resize(struct zcu_buffer *buf, int times);
-int zcu_buf_create(struct zcu_buffer *buf);
-int zcu_buf_isempty(struct zcu_buffer *buf);
-char *zcu_buf_get_data(struct zcu_buffer *buf);
-int zcu_buf_clean(struct zcu_buffer *buf);
-int zcu_buf_reset(struct zcu_buffer *buf);
-int zcu_buf_concat_va(struct zcu_buffer *buf, int len, char *fmt, va_list args);
-int zcu_buf_concat(struct zcu_buffer *buf, char *fmt, ...);
+int u_soc_equal_sockaddr(const struct sockaddr *addr1,
+			   const struct sockaddr *addr2, int compare_port);
+
+int u_net_get_host(const char *name, struct addrinfo *res, int ai_family,
+		int port);
+
+struct addrinfo *u_net_get_address(const char *address, int port);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _ZCU_SBUFFER_H_ */
+
+#endif /* _U_NETWORK_H_ */

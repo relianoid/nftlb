@@ -15,20 +15,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "zcu_sbuffer.h"
-#include "zcu_log.h"
+#include "u_sbuffer.h"
+#include "u_log.h"
 
-int zcu_buf_get_size(struct zcu_buffer *buf)
+int u_buf_get_size(struct u_buffer *buf)
 {
 	return buf->size;
 }
 
-char *zcu_buf_get_next(struct zcu_buffer *buf)
+char *u_buf_get_next(struct u_buffer *buf)
 {
 	return buf->data + buf->next;
 }
 
-int zcu_buf_resize(struct zcu_buffer *buf, int times)
+int u_buf_resize(struct u_buffer *buf, int times)
 {
 	char *pbuf;
 	int newsize;
@@ -50,32 +50,32 @@ int zcu_buf_resize(struct zcu_buffer *buf, int times)
 	return 0;
 }
 
-int zcu_buf_create(struct zcu_buffer *buf)
+int u_buf_create(struct u_buffer *buf)
 {
 	buf->size = 0;
 	buf->next = 0;
 
-	buf->data = (char *)calloc(1, ZCU_DEF_BUFFER_SIZE);
+	buf->data = (char *)calloc(1, U_DEF_BUFFER_SIZE);
 	if (!buf->data) {
 		return 1;
 	}
 
 	*buf->data = '\0';
-	buf->size = ZCU_DEF_BUFFER_SIZE;
+	buf->size = U_DEF_BUFFER_SIZE;
 	return 0;
 }
 
-int zcu_buf_isempty(struct zcu_buffer *buf)
+int u_buf_isempty(struct u_buffer *buf)
 {
 	return (buf->data[0] == 0);
 }
 
-char *zcu_buf_get_data(struct zcu_buffer *buf)
+char *u_buf_get_data(struct u_buffer *buf)
 {
 	return buf->data;
 }
 
-int zcu_buf_clean(struct zcu_buffer *buf)
+int u_buf_clean(struct u_buffer *buf)
 {
 	if (buf->data)
 		free(buf->data);
@@ -84,14 +84,14 @@ int zcu_buf_clean(struct zcu_buffer *buf)
 	return 0;
 }
 
-int zcu_buf_reset(struct zcu_buffer *buf)
+int u_buf_reset(struct u_buffer *buf)
 {
 	buf->data[0] = 0;
 	buf->next = 0;
 	return 0;
 }
 
-int zcu_buf_concat_va(struct zcu_buffer *buf, int len, char *fmt, va_list args)
+int u_buf_concat_va(struct u_buffer *buf, int len, char *fmt, va_list args)
 {
 	int times = 0;
 	char *pnext;
@@ -99,22 +99,22 @@ int zcu_buf_concat_va(struct zcu_buffer *buf, int len, char *fmt, va_list args)
 	if (buf->next + len >= buf->size)
 		times = ((buf->next + len - buf->size) / EXTRA_SIZE) + 1;
 
-	if (zcu_buf_resize(buf, times)) {
-		zcu_log_print(
+	if (u_buf_resize(buf, times)) {
+		u_log_print(
 			LOG_ERR,
 			"Error resizing the buffer %d times from a size of %d!",
 			times, buf->size);
 		return 1;
 	}
 
-	pnext = zcu_buf_get_next(buf);
+	pnext = u_buf_get_next(buf);
 	vsnprintf(pnext, len + 1, fmt, args);
 	buf->next += len;
 
 	return 0;
 }
 
-int zcu_buf_concat(struct zcu_buffer *buf, char *fmt, ...)
+int u_buf_concat(struct u_buffer *buf, char *fmt, ...)
 {
 	int len;
 	va_list args;
@@ -124,7 +124,7 @@ int zcu_buf_concat(struct zcu_buffer *buf, char *fmt, ...)
 	va_end(args);
 
 	va_start(args, fmt);
-	zcu_buf_concat_va(buf, len, fmt, args);
+	u_buf_concat_va(buf, len, fmt, args);
 	va_end(args);
 
 	return 0;

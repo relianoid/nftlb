@@ -27,14 +27,14 @@
 #include "policies.h"
 #include "objects.h"
 #include "nft.h"
-#include "zcu_string.h"
-#include "zcu_log.h"
+#include "u_string.h"
+#include "u_log.h"
 
 static struct element * element_create(struct policy *p, char *data, char *time, char *counter_pkts, char *counter_bytes)
 {
 	struct element *e = (struct element *)malloc(sizeof(struct element));
 	if (!e) {
-		zcu_log_print(LOG_ERR, "element memory allocation error");
+		u_log_print(LOG_ERR, "element memory allocation error");
 		return NULL;
 	}
 
@@ -108,21 +108,21 @@ new_element:
 			fin_ptr = fin1_ptr;
 	}
 
-	zcu_str_snprintf(elem_addr, fin_ptr - ini_ptr, ini_ptr);
+	u_str_snprintf(elem_addr, fin_ptr - ini_ptr, ini_ptr);
 	fin_ptr += 1;
 	ini_ptr = fin_ptr;
 
 	if ((fin_ptr = strstr(ini_ptr, " bytes ")) != NULL) {
 		ini_ptr += 16;
-		zcu_str_snprintf(elem_pkts, fin_ptr - ini_ptr, ini_ptr);
+		u_str_snprintf(elem_pkts, fin_ptr - ini_ptr, ini_ptr);
 		ini_ptr += 8;
 		if ((fin_ptr = strstr(ini_ptr, ",")) != NULL || (fin_ptr = strstr(ini_ptr, " ")) != NULL) {
-			zcu_str_snprintf(elem_bytes, fin_ptr - ini_ptr, ini_ptr);
+			u_str_snprintf(elem_bytes, fin_ptr - ini_ptr, ini_ptr);
 			ini_ptr = ++fin_ptr;
 		}
 	} else {
-		zcu_str_snprintf(elem_pkts, 3, DEFAULT_COUNTER);
-		zcu_str_snprintf(elem_bytes, 3, DEFAULT_COUNTER);
+		u_str_snprintf(elem_pkts, 3, DEFAULT_COUNTER);
+		u_str_snprintf(elem_bytes, 3, DEFAULT_COUNTER);
 		fin_ptr = ini_ptr;
 	}
 
@@ -147,13 +147,13 @@ void element_s_print(struct policy *p)
 	struct element *e;
 
 	list_for_each_entry(e, &p->elements, list) {
-		zcu_log_print(LOG_DEBUG,"    [element] ");
-		zcu_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_DATA, e->data);
+		u_log_print(LOG_DEBUG,"    [element] ");
+		u_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_DATA, e->data);
 		if (p->timeout && e->time && strcmp(e->time, "") != 0)
-			zcu_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_TIME, e->time);
-		zcu_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_COUNTER_PACKETS, e->counter_pkts);
-		zcu_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_COUNTER_BYTES, e->counter_bytes);
-		zcu_log_print(LOG_DEBUG,"       *[action] %d", e->action);
+			u_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_TIME, e->time);
+		u_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_COUNTER_PACKETS, e->counter_pkts);
+		u_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_COUNTER_BYTES, e->counter_bytes);
+		u_log_print(LOG_DEBUG,"       *[action] %d", e->action);
 	}
 }
 
@@ -171,7 +171,7 @@ struct element * element_lookup_by_name(struct policy *p, const char *data)
 
 int element_set_action(struct element *e, int action)
 {
-	zcu_log_print(LOG_DEBUG, "%s():%d: element %s action is %d - new action %d", __FUNCTION__, __LINE__, e->data, e->action, action);
+	u_log_print(LOG_DEBUG, "%s():%d: element %s action is %d - new action %d", __FUNCTION__, __LINE__, e->data, e->action, action);
 
 	if (action == ACTION_DELETE) {
 		element_delete(e);
@@ -251,7 +251,7 @@ int element_pos_actionable(struct config_pair *c, int apply_action)
 	if (!p || !e)
 		return -1;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: pos actionable element %s of policy %s with param %d", __FUNCTION__, __LINE__, e->data, p->name, c->key);
+	u_log_print(LOG_DEBUG, "%s():%d: pos actionable element %s of policy %s with param %d", __FUNCTION__, __LINE__, e->data, p->name, c->key);
 
 	switch (c->key) {
 	case KEY_DATA:
@@ -273,7 +273,7 @@ int element_get_list(struct policy *p)
 	const char *buf;
 	struct nftst *n = nftst_create_from_policy(p);
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: policy %s", __FUNCTION__, __LINE__, p->name);
+	u_log_print(LOG_DEBUG, "%s():%d: policy %s", __FUNCTION__, __LINE__, p->name);
 
 	nft_get_rules_buffer(&buf, KEY_POLICIES, n);
 	p->total_elem = 0;

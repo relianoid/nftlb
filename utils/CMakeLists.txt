@@ -36,7 +36,7 @@ set(MAINFOLDER ${PROJECT_SOURCE_DIR})
 
 set(PROJECT_VERSION "0.0.1")
 set(PROJECT_DESCRIPTION "RELIANOID core utils library")
-set(PROJECT_CODENAME "zcutils")
+set(PROJECT_CODENAME "utils")
 
 # get current git info
 if (EXISTS "${PROJECT_SOURCE_DIR}/.git/HEAD")
@@ -58,28 +58,28 @@ endif ()
 
 set(sources
 	## sources
-	src/zcu_log.c
-	src/zcu_network.c
-	src/zcu_backtrace.c
-	src/zcu_http.c
-	src/zcu_sbuffer.c
-	src/zcu_string.c
+	src/u_log.c
+	src/u_network.c
+	src/u_backtrace.c
+	src/u_http.c
+	src/u_sbuffer.c
+	src/u_string.c
 
 	## libs
-	include/zcu_log.h
-	include/zcu_common.h
-	include/zcu_backtrace.h
-	include/zcu_environment.h
-	include/zcu_http.h
-	include/zcu_time.h
-	include/zcu_network.h
-	include/zcu_sbuffer.h
-	include/zcu_string.h
+	include/u_log.h
+	include/u_common.h
+	include/u_backtrace.h
+	include/u_environment.h
+	include/u_http.h
+	include/u_time.h
+	include/u_network.h
+	include/u_sbuffer.h
+	include/u_string.h
 )
 
-include_directories(${PROJECT_SOURCE_DIR}/zcutils/include)
+include_directories(${PROJECT_SOURCE_DIR}/utils/include)
 
-add_library(zcutils ${sources})
+add_library(utils ${sources})
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m64 -pipe -Wno-unused-function -Wall")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -g -O0")

@@ -15,28 +15,37 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _ZCU_NETWORK_H_
-#define _ZCU_NETWORK_H_
+#ifndef _U_SBUFFER_H_
+#define _U_SBUFFER_H_
 
-#include <netdb.h>
-#include <sys/socket.h>
-#include <sys/un.h>
+#include <stdarg.h>
+#include "u_common.h"
+
+#define EXTRA_SIZE 1024
+
+struct u_buffer {
+	int size;
+	int next;
+	char *data;
+};
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-int zcu_soc_equal_sockaddr(const struct sockaddr *addr1,
-			   const struct sockaddr *addr2, int compare_port);
-
-int zcu_net_get_host(const char *name, struct addrinfo *res, int ai_family,
-		int port);
-
-struct addrinfo *zcu_net_get_address(const char *address, int port);
+int u_buf_get_size(struct u_buffer *buf);
+char *u_buf_get_next(struct u_buffer *buf);
+int u_buf_resize(struct u_buffer *buf, int times);
+int u_buf_create(struct u_buffer *buf);
+int u_buf_isempty(struct u_buffer *buf);
+char *u_buf_get_data(struct u_buffer *buf);
+int u_buf_clean(struct u_buffer *buf);
+int u_buf_reset(struct u_buffer *buf);
+int u_buf_concat_va(struct u_buffer *buf, int len, char *fmt, va_list args);
+int u_buf_concat(struct u_buffer *buf, char *fmt, ...);
 
 #ifdef __cplusplus
 }
 #endif
 
-
-#endif /* _ZCU_NETWORK_H_ */
+#endif /* _U_SBUFFER_H_ */

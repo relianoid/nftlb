@@ -15,12 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "zcu_backtrace.h"
+#include "u_backtrace.h"
 #include <execinfo.h>
-#include "zcu_common.h"
-#include "zcu_log.h"
+#include "u_common.h"
+#include "u_log.h"
 
-void zcu_bt_print_symbols()
+void u_bt_print_symbols()
 {
     void *buffer[255];
     char **str;
@@ -31,12 +31,12 @@ void zcu_bt_print_symbols()
 
     str = backtrace_symbols(buffer, calls);
     if (!str) {
-        zcu_log_print(LOG_ERR, "No backtrace strings found!");
+        u_log_print(LOG_ERR, "No backtrace strings found!");
         exit(EXIT_FAILURE);
     }
 
     for (i = 0; i < calls; i++)
-        zcu_log_print(LOG_ERR, "Backtrace_symbol: %s", str[i]);
+        u_log_print(LOG_ERR, "Backtrace_symbol: %s", str[i]);
 
     free(str);
 }

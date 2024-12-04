@@ -24,13 +24,13 @@
 #include "nftst.h"
 #include "backends.h"
 #include "list.h"
-#include "zcu_log.h"
+#include "u_log.h"
 
 static struct nftst *nftst_create(void)
 {
 	struct nftst *n = (struct nftst *)malloc(sizeof(struct nftst));
 	if (!n) {
-		zcu_log_print(LOG_ERR, "nft struct memory allocation error");
+		u_log_print(LOG_ERR, "nft struct memory allocation error");
 		return NULL;
 	}
 	return n;

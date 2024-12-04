@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _ZCU_ENVIRONMENT_H_
-#define _ZCU_ENVIRONMENT_H_
+#ifndef _U_ENVIRONMENT_H_
+#define _U_ENVIRONMENT_H_
 
 #include <csignal>
 #include <fcntl.h>
@@ -48,7 +48,7 @@ static bool createPidFile(const std::string & pid_file_name,
 		fclose(pid_file_hl);
 		return true;
 	} else
-		zcu_log_print(LOG_ERR, "Create \"%s\": %s",
+		u_log_print(LOG_ERR, "Create \"%s\": %s",
 				  __func__, __LINE__,
 				  pid_file_name.c_str(), strerror(errno));
 	return false;
@@ -74,4 +74,4 @@ static bool removePidFile(const std::string & pid_file_name)
 }
 #endif
 
-#endif /* _ZCU_ENVIRONMENT_H_ */
+#endif /* _U_ENVIRONMENT_H_ */

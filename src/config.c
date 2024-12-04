@@ -36,7 +36,7 @@
 #include "addresses.h"
 #include "farmaddress.h"
 #include "addresspolicy.h"
-#include "zcu_log.h"
+#include "u_log.h"
 
 #define CONFIG_MAXBUF			4096
 #define CONFIG_OUTBUF_SIZE		1024
@@ -77,7 +77,7 @@ static int config_value_family(const char *value)
 		return VALUE_FAMILY_INET;
 
 	config_set_output(". Parsing unknown value '%s' in '%s', using default '%s'", value, CONFIG_KEY_FAMILY, CONFIG_VALUE_FAMILY_IPV4);
-	zcu_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_FAMILY, CONFIG_VALUE_FAMILY_IPV4);
+	u_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_FAMILY, CONFIG_VALUE_FAMILY_IPV4);
 	return VALUE_FAMILY_IPV4;
 }
 
@@ -95,7 +95,7 @@ static int config_value_mode(const char *value)
 		return VALUE_MODE_LOCAL;
 
 	config_set_output(". Parsing unknown value '%s' in '%s', using default '%s'", value, CONFIG_KEY_MODE, CONFIG_VALUE_MODE_SNAT);
-	zcu_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_MODE, CONFIG_VALUE_MODE_SNAT);
+	u_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_MODE, CONFIG_VALUE_MODE_SNAT);
 	return VALUE_MODE_SNAT;
 }
 
@@ -111,7 +111,7 @@ static int config_value_proto(const char *value)
 		return VALUE_PROTO_ALL;
 
 	config_set_output(". Parsing unknown value '%s' in '%s', using default '%s'", value, CONFIG_KEY_PROTO, CONFIG_VALUE_PROTO_TCP);
-	zcu_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_PROTO, CONFIG_VALUE_PROTO_TCP);
+	u_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_PROTO, CONFIG_VALUE_PROTO_TCP);
 	return VALUE_PROTO_TCP;
 }
 
@@ -127,7 +127,7 @@ static int config_value_sched(const char *value)
 		return VALUE_SCHED_SYMHASH;
 
 	config_set_output(". Parsing unknown value '%s' in '%s', using default '%s'", value, CONFIG_KEY_SCHED, CONFIG_VALUE_SCHED_RR);
-	zcu_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_SCHED, CONFIG_VALUE_SCHED_RR);
+	u_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_SCHED, CONFIG_VALUE_SCHED_RR);
 	return VALUE_SCHED_RR;
 }
 
@@ -155,7 +155,7 @@ static int config_value_meta(const char *value)
 
 	if (mask == 0) {
 		config_set_output(". Parsing unknown value '%s', using default '%s'", value, CONFIG_VALUE_META_NONE);
-		zcu_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_VALUE_META_NONE);
+		u_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_VALUE_META_NONE);
 	}
 
 	return mask;
@@ -177,7 +177,7 @@ static int config_value_helper(const char *value)
 		return VALUE_HELPER_TFTP;
 
 	config_set_output(". Parsing unknown value '%s' in '%s', using default '%s'", value, CONFIG_KEY_HELPER, CONFIG_VALUE_HELPER_NONE);
-	zcu_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_HELPER, CONFIG_VALUE_HELPER_NONE);
+	u_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_HELPER, CONFIG_VALUE_HELPER_NONE);
 	return VALUE_HELPER_NONE;
 }
 
@@ -199,7 +199,7 @@ static int config_value_log(const char *value)
 
 	if (logmask == 0) {
 		config_set_output(". Parsing unknown value '%s' in '%s', using default '%s'", value, CONFIG_KEY_LOG, CONFIG_VALUE_LOG_NONE);
-		zcu_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_LOG, CONFIG_VALUE_LOG_NONE);
+		u_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_LOG, CONFIG_VALUE_LOG_NONE);
 	}
 
 	return logmask;
@@ -213,7 +213,7 @@ static int config_value_switch(const char *value)
 		return VALUE_SWITCH_OFF;
 
 	config_set_output(". Parsing unknown value '%s', using default '%s'", value, CONFIG_VALUE_SWITCH_OFF);
-	zcu_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_VALUE_SWITCH_OFF);
+	u_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_VALUE_SWITCH_OFF);
 	return VALUE_SWITCH_OFF;
 }
 
@@ -229,7 +229,7 @@ static int config_value_state(const char *value)
 		return VALUE_STATE_CONFERR;
 
 	config_set_output(". Parsing unknown value '%s' in '%s', using default '%s'", value, CONFIG_KEY_STATE, CONFIG_VALUE_STATE_UP);
-	zcu_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_STATE, CONFIG_VALUE_STATE_UP);
+	u_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_STATE, CONFIG_VALUE_STATE_UP);
 	return VALUE_STATE_UP;
 }
 
@@ -257,7 +257,7 @@ static int config_value_type(const char *value)
 		return VALUE_TYPE_ALLOW;
 
 	config_set_output(". Parsing unknown value '%s' in '%s', using default '%s'", value, CONFIG_KEY_TYPE, CONFIG_VALUE_POLICIES_TYPE_BL);
-	zcu_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_TYPE, CONFIG_VALUE_POLICIES_TYPE_BL);
+	u_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_TYPE, CONFIG_VALUE_POLICIES_TYPE_BL);
 	return VALUE_TYPE_DENY;
 }
 
@@ -274,7 +274,7 @@ static int config_value_verdict(const char *value)
 
 	if (verdictmask == VALUE_VERDICT_NONE) {
 		config_set_output(". Parsing unknown value '%s' in '%s'", value, CONFIG_KEY_VERDICT);
-		zcu_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_VERDICT);
+		u_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_VERDICT);
 		return VALUE_VERDICT_NONE;
 	}
 
@@ -289,7 +289,7 @@ static int config_value_route(const char *value)
 		return VALUE_ROUTE_OUT;
 
 	config_set_output(". Parsing unknown value '%s' in '%s', using default '%s'", value, CONFIG_KEY_ROUTE, CONFIG_VALUE_ROUTE_IN);
-	zcu_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_ROUTE, CONFIG_VALUE_ROUTE_IN);
+	u_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s', using default '%s'", __FUNCTION__, __LINE__, value, CONFIG_KEY_ROUTE, CONFIG_VALUE_ROUTE_IN);
 	return VALUE_ROUTE_IN;
 }
 
@@ -307,7 +307,7 @@ static int config_value_ratelimit(int key, int *int_value, int *int_unit, const 
 
 	if (*int_value < 0) {
 		config_set_output(". Invalid value of key '%s' must be >=0", obj_print_key(key));
-		zcu_log_print(LOG_ERR, "%s():%d: invalid value of key '%s' must be >=0", __FUNCTION__, __LINE__, obj_print_key(key));
+		u_log_print(LOG_ERR, "%s():%d: invalid value of key '%s' must be >=0", __FUNCTION__, __LINE__, obj_print_key(key));
 		return PARSER_VALID_FAILED;
 	}
 
@@ -326,7 +326,7 @@ static int config_value_ratelimit(int key, int *int_value, int *int_unit, const 
 		*int_unit = VALUE_UNIT_WEEK;
 	else {
 		config_set_output(". Parsing unknown value '%s' in '%s'", value, obj_print_key(key));
-		zcu_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s'", __FUNCTION__, __LINE__, value, obj_print_key(key));
+		u_log_print(LOG_ERR, "%s():%d: parsing unknown value '%s' in '%s'", __FUNCTION__, __LINE__, value, obj_print_key(key));
 		return PARSER_VALID_FAILED;
 	}
 
@@ -385,7 +385,7 @@ static int config_value(const char *value)
 			break;
 		}
 		config_set_output(". Invalid value of key '%s' must be >=1", obj_print_key(c.key));
-		zcu_log_print(LOG_ERR, "%s():%d: invalid value of key '%s' must be >=1", __FUNCTION__, __LINE__, obj_print_key(c.key));
+		u_log_print(LOG_ERR, "%s():%d: invalid value of key '%s' must be >=1", __FUNCTION__, __LINE__, obj_print_key(c.key));
 		break;
 	case KEY_RESPONSETTL:
 	case KEY_PERSISTTM:
@@ -401,7 +401,7 @@ static int config_value(const char *value)
 			break;
 		}
 		config_set_output(". Invalid value of key '%s' must be >=0", obj_print_key(c.key));
-		zcu_log_print(LOG_ERR, "%s():%d: invalid value of key '%s' must be >=0", __FUNCTION__, __LINE__, obj_print_key(c.key));
+		u_log_print(LOG_ERR, "%s():%d: invalid value of key '%s' must be >=0", __FUNCTION__, __LINE__, obj_print_key(c.key));
 		break;
 	case KEY_NEWRTLIMIT:
 	case KEY_RSTRTLIMIT:
@@ -416,7 +416,7 @@ static int config_value(const char *value)
 			break;
 		}
 		config_set_output(". Invalid value of key '%s' must be >=-1", obj_print_key(c.key));
-		zcu_log_print(LOG_ERR, "%s():%d: invalid value of key '%s' must be >=-1", __FUNCTION__, __LINE__, obj_print_key(c.key));
+		u_log_print(LOG_ERR, "%s():%d: invalid value of key '%s' must be >=-1", __FUNCTION__, __LINE__, obj_print_key(c.key));
 		break;
 	case KEY_ACTION:
 		c.int_value = config_value_action(value);
@@ -444,7 +444,7 @@ static int config_value(const char *value)
 	case KEY_DATA:
 		if (strcmp(value, "") == 0) {
 			config_set_output(". Key '%s' cannot be empty", obj_print_key(c.key));
-			zcu_log_print(LOG_ERR, "%s():%d: key '%s' cannot be empty", __FUNCTION__, __LINE__, obj_print_key(c.key));
+			u_log_print(LOG_ERR, "%s():%d: key '%s' cannot be empty", __FUNCTION__, __LINE__, obj_print_key(c.key));
 			break;
 		}
 		/* fallthrough */
@@ -475,7 +475,7 @@ static int config_value(const char *value)
 		break;
 	default:
 		config_set_output(". Unknown parsed key with index '%d'", c.key);
-		zcu_log_print(LOG_ERR, "%s():%d: unknown parsed key with index '%d'", __FUNCTION__, __LINE__, c.key);
+		u_log_print(LOG_ERR, "%s():%d: unknown parsed key with index '%d'", __FUNCTION__, __LINE__, c.key);
 		ret = PARSER_OBJ_UNKNOWN;
 		break;
 	}
@@ -611,7 +611,7 @@ static int config_key(const char *key)
 		return KEY_COUNTER_BYTES;
 
 	config_set_output(". Unknown key '%s'", key);
-	zcu_log_print(LOG_ERR, "%s():%d: unknown key '%s'", __FUNCTION__, __LINE__, key);
+	u_log_print(LOG_ERR, "%s():%d: unknown key '%s'", __FUNCTION__, __LINE__, key);
 	return -1;
 }
 
@@ -646,7 +646,7 @@ static int config_json_object(json_t *element, int level, int source, int apply_
 		if (jump_config_value(level, c.key) == 0) {
 			ret = config_json(value, level, source, c.key, apply_action);
 			if (ret) {
-				zcu_log_print(LOG_ERR, "%s():%d: error parsing object in level %d", __FUNCTION__, __LINE__, c.level);
+				u_log_print(LOG_ERR, "%s():%d: error parsing object in level %d", __FUNCTION__, __LINE__, c.level);
 				return ret;
 			}
 		}
@@ -680,7 +680,7 @@ static int config_json_string(json_t *element, int level, int source, int apply_
 	if (ret != PARSER_OK)
 		return ret;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: %d(level) %d(key) %s(value) %d(value) %d(value2) apply_action %d", __FUNCTION__, __LINE__, c.level, c.key, c.str_value, c.int_value, c.int_value2, apply_action);
+	u_log_print(LOG_DEBUG, "%s():%d: %d(level) %d(key) %s(value) %d(value) %d(value2) apply_action %d", __FUNCTION__, __LINE__, c.level, c.key, c.str_value, c.int_value, c.int_value2, apply_action);
 
 	ret = obj_set_attribute(&c, source, apply_action);
 	init_pair(&c);
@@ -692,7 +692,7 @@ static int config_json(json_t *element, int level, int source, int key, int appl
 {
 	int ret = PARSER_OK;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: %d(level) %d(source)", __FUNCTION__, __LINE__, level, source);
+	u_log_print(LOG_DEBUG, "%s():%d: %d(level) %d(source)", __FUNCTION__, __LINE__, level, source);
 
 	switch (json_typeof(element)) {
 	case JSON_OBJECT:
@@ -735,7 +735,7 @@ static int config_json(json_t *element, int level, int source, int key, int appl
 
 		break;
 	default:
-		zcu_log_print(LOG_ERR, "Configuration file unknown element type %d", json_typeof(element));
+		u_log_print(LOG_ERR, "Configuration file unknown element type %d", json_typeof(element));
 	}
 
 	return ret;
@@ -758,7 +758,7 @@ int config_file(const char *file)
 
 	fd = fopen(file, "r");
 	if (fd == NULL) {
-		zcu_log_print(LOG_ERR, "Error open configuration file %s", file);
+		u_log_print(LOG_ERR, "Error open configuration file %s", file);
 		return PARSER_FAILED;
 	}
 
@@ -768,7 +768,7 @@ int config_file(const char *file)
 		ret = config_json(root, LEVEL_INIT, CONFIG_SRC_FILE, -1, ACTION_START);
 		json_decref(root);
 	} else {
-		zcu_log_print(LOG_ERR, "Configuration file error '%s' on line %d: %s", file, error.line, error.text);
+		u_log_print(LOG_ERR, "Configuration file error '%s' on line %d: %s", file, error.line, error.text);
 		ret = PARSER_STRUCT_FAILED;
 	}
 
@@ -804,7 +804,7 @@ int config_buffer(const char *buf, int apply_action)
 	json_t		*root;
 	int		ret = PARSER_OK;
 
-	zcu_log_print(LOG_NOTICE, "%s():%d: payload %d : %s", __FUNCTION__, __LINE__, (int)strlen(buf), buf);
+	u_log_print(LOG_NOTICE, "%s():%d: payload %d : %s", __FUNCTION__, __LINE__, (int)strlen(buf), buf);
 
 	root = json_loadb(buf, strlen(buf), JSON_ALLOW_NUL, &error);
 
@@ -812,7 +812,7 @@ int config_buffer(const char *buf, int apply_action)
 		ret = config_json(root, LEVEL_INIT, CONFIG_SRC_BUFFER, -1, apply_action);
 		json_decref(root);
 	} else {
-		zcu_log_print(LOG_ERR, "Configuration error on line %d: %s", error.line, error.text);
+		u_log_print(LOG_ERR, "Configuration error on line %d: %s", error.line, error.text);
 		ret = PARSER_STRUCT_FAILED;
 	}
 

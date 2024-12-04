@@ -20,10 +20,10 @@ nftlb_SOURCES = config.c	\
 		farmaddress.c \
 		addresspolicy.c \
 		nftst.c \
-		../zcutils/src/zcu_backtrace.c \
-		../zcutils/src/zcu_log.c \
-		../zcutils/src/zcu_network.c \
-		../zcutils/src/zcu_sbuffer.c \
-		../zcutils/src/zcu_http.c \
-		../zcutils/src/zcu_string.c
+		../utils/src/u_backtrace.c \
+		../utils/src/u_log.c \
+		../utils/src/u_network.c \
+		../utils/src/u_sbuffer.c \
+		../utils/src/u_http.c \
+		../utils/src/u_string.c
 nftlb_LDADD = ${LIBNFTABLES_LIBS} ${LIBJSON_LIBS} ${LIBMNL_LIBS} -lev

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "zcu_http.h"
+#include "u_http.h"
 
 const char *ws_str_responses[WS_HTTP_MAX] = {
 	HTTP_PROTO "500 Internal Server Error" HTTP_LINE_END,

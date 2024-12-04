@@ -15,24 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _ZCU_COMMON_H_
-#define _ZCU_COMMON_H_
+#ifndef _U_STRING_H_
+#define _U_STRING_H_
 
-#define ZCU_DEF_BUFFER_SIZE 4096
-#define MAXBUF 4096
-
-#define LIKELY(x) __builtin_expect((x), 1)
-#define UNLIKELY(x) __builtin_expect((x), 0)
-#define UNIQUE_NAME_0(a, b) UNIQUE_NAME_I(a, b)
-#define UNIQUE_NAME_I(a, b) UNIQUE_NAME_II(~, a##b)
-#define UNIQUE_NAME_II(p, res) res
-#define UNIQUE_NAME(base) UNIQUE_NAME_0(base, __COUNTER__)
-#define IN_RANGE(var, min, max) (var >= min && var <= max)
-
-// Maximum buffer data. The requet or response headers can't be bigger
-// than this value
-#ifndef MAX_DATA_SIZE
-#define MAX_DATA_SIZE (1024 * 64)
+#ifdef __cplusplus
+extern "C" {
 #endif
 
-#endif /* _ZCU_COMMON_H_ */
+void u_str_snprintf(char *strdst, int size, char *strsrc);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* _U_STRING_H_ */

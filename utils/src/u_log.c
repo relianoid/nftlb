@@ -15,81 +15,81 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "zcu_log.h"
+#include "u_log.h"
 
-char zcu_log_prefix[LOG_PREFIX_BUFSIZE] = "";
-int zcu_log_level = ZCUTILS_LOG_LEVEL_DEFAULT;
-int zcu_log_output = ZCUTILS_LOG_OUTPUT_DEFAULT;
+char u_log_prefix[LOG_PREFIX_BUFSIZE] = "";
+int u_log_level = UTILS_LOG_LEVEL_DEFAULT;
+int u_log_output = UTILS_LOG_OUTPUT_DEFAULT;
 
 
-void zcu_log_set_prefix(const char *string)
+void u_log_set_prefix(const char *string)
 {
     if (strlen(string) >= LOG_PREFIX_BUFSIZE)
-        zcu_log_print(
+        u_log_print(
             LOG_ERR,
             "The farm name is greater than the prefix log: %d >= %d",
             strlen(string), LOG_PREFIX_BUFSIZE);
     else
-        memcpy(zcu_log_prefix, string, strlen(string) + 1);
+        memcpy(u_log_prefix, string, strlen(string) + 1);
 }
 
-void zcu_log_set_level(int loglevel)
+void u_log_set_level(int loglevel)
 {
-    zcu_log_level = loglevel;
+    u_log_level = loglevel;
     setlogmask(LOG_UPTO(loglevel));
 }
 
-int zcu_log_get_level(void)
+int u_log_get_level(void)
 {
-	return zcu_log_level;
+	return u_log_level;
 }
 
-void zcu_log_set_output(int output)
+void u_log_set_output(int output)
 {
     switch (output) {
     case VALUE_LOG_OUTPUT_STDOUT:
-        zcu_log_output = ZCUTILS_LOG_OUTPUT_STDOUT;
+        u_log_output = UTILS_LOG_OUTPUT_STDOUT;
         break;
     case VALUE_LOG_OUTPUT_STDERR:
-        zcu_log_output = ZCUTILS_LOG_OUTPUT_STDERR;
+        u_log_output = UTILS_LOG_OUTPUT_STDERR;
         break;
     case VALUE_LOG_OUTPUT_SYSOUT:
-        zcu_log_output =
-            ZCUTILS_LOG_OUTPUT_SYSLOG | ZCUTILS_LOG_OUTPUT_STDOUT;
+        u_log_output =
+            UTILS_LOG_OUTPUT_SYSLOG | UTILS_LOG_OUTPUT_STDOUT;
         break;
     case VALUE_LOG_OUTPUT_SYSERR:
-        zcu_log_output =
-            ZCUTILS_LOG_OUTPUT_SYSLOG | ZCUTILS_LOG_OUTPUT_STDERR;
+        u_log_output =
+            UTILS_LOG_OUTPUT_SYSLOG | UTILS_LOG_OUTPUT_STDERR;
         break;
     case VALUE_LOG_OUTPUT_SYSLOG:
     default:
-        zcu_log_output = ZCUTILS_LOG_OUTPUT_SYSLOG;
+        u_log_output = UTILS_LOG_OUTPUT_SYSLOG;
     }
     return;
 }
 
-int zcu_log_print(int loglevel, const char *fmt, ...)
+int u_log_print(int loglevel, const char *fmt, ...)
 {
     va_list args;
 
-    if (loglevel > zcu_log_level)
+    if (loglevel > u_log_level)
         return 0;
 
-    if (zcu_log_output & ZCUTILS_LOG_OUTPUT_STDOUT) {
+    if (u_log_output & UTILS_LOG_OUTPUT_STDOUT) {
         va_start(args, fmt);
         vfprintf(stdout, fmt, args);
         fprintf(stdout, "\n");
         va_end(args);
     }
 
-    if (zcu_log_output & ZCUTILS_LOG_OUTPUT_STDERR) {
+    if (u_log_output & UTILS_LOG_OUTPUT_STDERR) {
         va_start(args, fmt);
         vfprintf(stderr, fmt, args);
         fprintf(stderr, "\n");
         va_end(args);
     }
 
-    if (zcu_log_output & ZCUTILS_LOG_OUTPUT_SYSLOG) {
+    if (u_log_output & UTILS_LOG_OUTPUT_SYSLOG) {
         va_start(args, fmt);
         vsyslog(loglevel, fmt, args);
         va_end(args);

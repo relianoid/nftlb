@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _ZCU_TIME_H_
-#define _ZCU_TIME_H_
+#ifndef _U_TIME_H_
+#define _U_TIME_H_
 
 #include <sys/time.h>
 
@@ -69,4 +69,4 @@ private:
 	inline static thread_local double milliseconds;
 };
 
-#endif /* _ZCU_TIME_H_ */
+#endif /* _U_TIME_H_ */

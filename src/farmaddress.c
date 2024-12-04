@@ -28,13 +28,13 @@
 #include "farms.h"
 #include "objects.h"
 #include "network.h"
-#include "zcu_log.h"
+#include "u_log.h"
 
 static struct farmaddress * farmaddress_create(struct farm *f, struct address *a)
 {
 	struct farmaddress *fa = (struct farmaddress *)malloc(sizeof(struct farmaddress));
 	if (!fa) {
-		zcu_log_print(LOG_ERR, "Farm address memory allocation error");
+		u_log_print(LOG_ERR, "Farm address memory allocation error");
 		return NULL;
 	}
 
@@ -81,27 +81,27 @@ void farmaddress_s_print(struct farm *f)
 	list_for_each_entry(fa, &f->addresses, list) {
 		a = fa->address;
 
-		zcu_log_print(LOG_DEBUG,"    [address] ");
-		zcu_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_NAME, fa->address->name);
-		zcu_log_print(LOG_DEBUG,"      *[%s] %d", CONFIG_KEY_ACTION, fa->action);
+		u_log_print(LOG_DEBUG,"    [address] ");
+		u_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_NAME, fa->address->name);
+		u_log_print(LOG_DEBUG,"      *[%s] %d", CONFIG_KEY_ACTION, fa->action);
 
 		if (a->iface)
-			zcu_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_IFACE, a->iface);
+			u_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_IFACE, a->iface);
 
 		if (a->iethaddr)
-			zcu_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_IETHADDR, a->iethaddr);
+			u_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_IETHADDR, a->iethaddr);
 
-		zcu_log_print(LOG_DEBUG,"      *[ifidx] %d", a->ifidx);
+		u_log_print(LOG_DEBUG,"      *[ifidx] %d", a->ifidx);
 
 		if (a->ipaddr)
-			zcu_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_IPADDR, a->ipaddr);
+			u_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_IPADDR, a->ipaddr);
 
 		if (a->ports)
-			zcu_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_PORTS, a->ports);
+			u_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_PORTS, a->ports);
 
-		zcu_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_FAMILY, obj_print_family(a->family));
-		zcu_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_PROTO, obj_print_proto(a->protocol));
-		zcu_log_print(LOG_DEBUG,"      *[policies_action] %d", a->policies_action);
+		u_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_FAMILY, obj_print_family(a->family));
+		u_log_print(LOG_DEBUG,"       [%s] %s", CONFIG_KEY_PROTO, obj_print_proto(a->protocol));
+		u_log_print(LOG_DEBUG,"      *[policies_action] %d", a->policies_action);
 	}
 }
 
@@ -120,7 +120,7 @@ struct farmaddress * farmaddress_lookup_by_name(struct farm *f, const char *name
 int farmaddress_set_action(struct farmaddress *fa, int action)
 {
 	struct farm *f = fa->farm;
-	zcu_log_print(LOG_DEBUG, "%s():%d: farm %s address %s action %d", __FUNCTION__, __LINE__, fa->farm->name, fa->address->ipaddr, action);
+	u_log_print(LOG_DEBUG, "%s():%d: farm %s address %s action %d", __FUNCTION__, __LINE__, fa->farm->name, fa->address->ipaddr, action);
 
 	if (action == ACTION_DELETE) {
 		farmaddress_delete(fa);
@@ -145,7 +145,7 @@ int farmaddress_s_set_action(struct farm *f, int action)
 {
 	struct farmaddress *fa, *next;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: farm %s", __FUNCTION__, __LINE__, f->name);
+	u_log_print(LOG_DEBUG, "%s():%d: farm %s", __FUNCTION__, __LINE__, f->name);
 
 	list_for_each_entry_safe(fa, next, &f->addresses, list)
 		if (fa->action > action)
@@ -209,7 +209,7 @@ int farmaddress_create_default(struct config_pair *c)
 	if (!f)
 		return 1;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: farm %s", __FUNCTION__, __LINE__, f->name);
+	u_log_print(LOG_DEBUG, "%s():%d: farm %s", __FUNCTION__, __LINE__, f->name);
 
 	fa = farmaddress_get_first(f);
 	if (fa) {
@@ -238,7 +238,7 @@ int farmaddress_set_attribute(struct config_pair *c)
 	struct address *a;
 
 	if (!f) {
-		zcu_log_print(LOG_INFO, "%s():%d: farm UNKNOWN", __FUNCTION__, __LINE__);
+		u_log_print(LOG_INFO, "%s():%d: farm UNKNOWN", __FUNCTION__, __LINE__);
 		return PARSER_OBJ_UNKNOWN;
 	}
 
@@ -272,7 +272,7 @@ int farmaddress_pre_actionable(struct config_pair *c)
 	if (!f)
 		return -1;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: pre actionable farm address for farm %s action %d", __FUNCTION__, __LINE__, f->name, f->action);
+	u_log_print(LOG_DEBUG, "%s():%d: pre actionable farm address for farm %s action %d", __FUNCTION__, __LINE__, f->name, f->action);
 
 	return farm_set_action(f, ACTION_RELOAD);
 }
@@ -285,7 +285,7 @@ int farmaddress_pos_actionable(struct config_pair *c)
 	if (!fa || !f)
 		return -1;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: pos actionable farm address %s for farm %s with param %d", __FUNCTION__, __LINE__, fa->address->name, f->name, c->key);
+	u_log_print(LOG_DEBUG, "%s():%d: pos actionable farm address %s for farm %s with param %d", __FUNCTION__, __LINE__, fa->address->name, f->name, c->key);
 
 	return farm_set_action(f, ACTION_RELOAD);
 }
@@ -295,7 +295,7 @@ int farmaddress_s_validate_iface(struct farm *f)
 	struct farmaddress *fa;
 	int anyvalid = 0;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: validating input farm addresses interface of %s", __FUNCTION__, __LINE__, f->name);
+	u_log_print(LOG_DEBUG, "%s():%d: validating input farm addresses interface of %s", __FUNCTION__, __LINE__, f->name);
 
 	list_for_each_entry(fa, &f->addresses, list) {
 		if (address_validate_iface(fa->address) || address_validate_iether(fa->address)) {
@@ -312,7 +312,7 @@ int farmaddress_s_validate_helper(struct farm *f, int new_value)
 {
 	struct farmaddress *fa;
 
-	zcu_log_print(LOG_DEBUG, "%s():%d: validating input farm address proto for new helper of %s", __FUNCTION__, __LINE__, f->name);
+	u_log_print(LOG_DEBUG, "%s():%d: validating input farm address proto for new helper of %s", __FUNCTION__, __LINE__, f->name);
 
 	if (new_value == VALUE_HELPER_NONE)
 		return PARSER_OK;
